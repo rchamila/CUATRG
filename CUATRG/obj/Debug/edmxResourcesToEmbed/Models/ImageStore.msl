@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CUATRGEntities2StoreContainer" CdmEntityContainer="CUATRGEntities4">
+    <EntitySetMapping Name="tblAlbums">
+      <EntityTypeMapping TypeName="CUATRGEntities2.tblAlbum">
+        <MappingFragment StoreEntitySet="tblAlbums">
+          <ScalarProperty Name="ALB_IDPkey" ColumnName="ALB_IDPkey" />
+          <ScalarProperty Name="ALB_Name" ColumnName="ALB_Name" />
+          <ScalarProperty Name="ALB_Description" ColumnName="ALB_Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblColorModes">
+      <EntityTypeMapping TypeName="CUATRGEntities2.tblColorMode">
+        <MappingFragment StoreEntitySet="tblColorModes">
+          <ScalarProperty Name="CMD_IDPkey" ColumnName="CMD_IDPkey" />
+          <ScalarProperty Name="CMD_Name" ColumnName="CMD_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblEnvironmentalConditions">
+      <EntityTypeMapping TypeName="CUATRGEntities2.tblEnvironmentalCondition">
+        <MappingFragment StoreEntitySet="tblEnvironmentalConditions">
+          <ScalarProperty Name="ENC_IDPkey" ColumnName="ENC_IDPkey" />
+          <ScalarProperty Name="ENC_Description" ColumnName="ENC_Description" />
+          <ScalarProperty Name="ENC_Name" ColumnName="ENC_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFeatures">
+      <EntityTypeMapping TypeName="CUATRGEntities2.tblFeature">
+        <MappingFragment StoreEntitySet="tblFeatures">
+          <ScalarProperty Name="FTR_IDPkey" ColumnName="FTR_IDPkey" />
+          <ScalarProperty Name="FTR_Name" ColumnName="FTR_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFilters">
+      <EntityTypeMapping TypeName="CUATRGEntities2.tblFilter">
+        <MappingFragment StoreEntitySet="tblFilters">
+          <ScalarProperty Name="FLT_IDPkey" ColumnName="FLT_IDPkey" />
+          <ScalarProperty Name="FLT_Name" ColumnName="FLT_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblProcessedImages">
+      <EntityTypeMapping TypeName="CUATRGEntities2.tblProcessedImage">
+        <MappingFragment StoreEntitySet="tblProcessedImages">
+          <ScalarProperty Name="PIM_IDPkey" ColumnName="PIM_IDPkey" />
+          <ScalarProperty Name="PIM_Name" ColumnName="PIM_Name" />
+          <ScalarProperty Name="FLT_IDFkey" ColumnName="FLT_IDFkey" />
+          <ScalarProperty Name="CMD_IDFkey" ColumnName="CMD_IDFkey" />
+          <ScalarProperty Name="IMG_IDFkey" ColumnName="IMG_IDFkey" />
+          <ScalarProperty Name="PIM_Path" ColumnName="PIM_Path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSensorDatas">
+      <EntityTypeMapping TypeName="CUATRGEntities2.tblSensorData">
+        <MappingFragment StoreEntitySet="tblSensorData">
+          <ScalarProperty Name="SND_IDPkey" ColumnName="SND_IDPkey" />
+          <ScalarProperty Name="IMG_IDFkey" ColumnName="IMG_IDFkey" />
+          <ScalarProperty Name="SDT_IDFkey" ColumnName="SDT_IDFkey" />
+          <ScalarProperty Name="SDT_Value" ColumnName="SDT_Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSensorDataTypes">
+      <EntityTypeMapping TypeName="CUATRGEntities2.tblSensorDataType">
+        <MappingFragment StoreEntitySet="tblSensorDataType">
+          <ScalarProperty Name="SDT_IDPkey" ColumnName="SDT_IDPkey" />
+          <ScalarProperty Name="SDT_Name" ColumnName="SDT_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblImages">
+      <EntityTypeMapping TypeName="CUATRGEntities2.tblImage">
+        <MappingFragment StoreEntitySet="tblImages">
+          <ScalarProperty Name="IMG_MetaDataPath" ColumnName="IMG_MetaDataPath" />
+          <ScalarProperty Name="IMG_SensorDataPath" ColumnName="IMG_SensorDataPath" />
+          <ScalarProperty Name="IMG_Path" ColumnName="IMG_Path" />
+          <ScalarProperty Name="ENC_IDFkey" ColumnName="ENC_IDFkey" />
+          <ScalarProperty Name="FTR_IDFkey" ColumnName="FTR_IDFkey" />
+          <ScalarProperty Name="ALB_IDFkey" ColumnName="ALB_IDFkey" />
+          <ScalarProperty Name="IMG_Name" ColumnName="IMG_Name" />
+          <ScalarProperty Name="IMG_IDPkey" ColumnName="IMG_IDPkey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblMetaTypes">
+      <EntityTypeMapping TypeName="CUATRGEntities2.tblMetaType">
+        <MappingFragment StoreEntitySet="tblMetaType">
+          <ScalarProperty Name="MTT_Description" ColumnName="MTT_Description" />
+          <ScalarProperty Name="MTT_Name" ColumnName="MTT_Name" />
+          <ScalarProperty Name="MTT_IDPkey" ColumnName="MTT_IDPkey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblMetaDatas">
+      <EntityTypeMapping TypeName="CUATRGEntities2.tblMetaData">
+        <MappingFragment StoreEntitySet="tblMetaData">
+          <ScalarProperty Name="MTT_IDFkey" ColumnName="MTT_IDFkey" />
+          <ScalarProperty Name="IMG_IDFkey" ColumnName="IMG_IDFkey" />
+          <ScalarProperty Name="MTD_Value" ColumnName="MTD_Value" />
+          <ScalarProperty Name="MTD_IDPkey" ColumnName="MTD_IDPkey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

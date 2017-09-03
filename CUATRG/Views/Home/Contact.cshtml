@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+
+
+<div class="container well">
+    <ol class="breadcrumb">
+        <li><a href="index.html">Home</a></li>
+        <li class="active"><a href="#">Contact Us</a></li>
+
+    </ol>
+    @using (Html.BeginForm("ContactUs", "Home", FormMethod.Post, new { id = "calcForm", @class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+        <div class="container">
+            <h1>Contact Us</h1>
+            <br />
+            <div class="col-md-6">
+                <div class="col-md-4">
+                    <div class="h4 margin-left">Name</div>
+                </div>
+                <div class="col-md-6">
+                     
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="name"></input>
+                        </div>
+                     
+                </div>
+                <div class="col-md-4">
+                    <div class="h4 margin-left">Email</div>
+                </div>
+                <div class="col-md-6">
+                    
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="email"></input>
+                        </div>
+ 
+                </div>
+                <div class="col-md-4">
+                    <div class="h4 margin-left">Description</div>
+                </div>
+                <div class="col-md-6">
+                    
+                        <div class="form-group">
+                            <textarea type="text" class="form-control" name="message" aria-multiline="true" style="height:100px"></textarea>
+                        </div>
+                     
+                </div>
+
+            </div>
+
+        </div>
+        <br />
+        <br />
+        <div class="col-md-6 col-sm-offset-2">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
+            </div>
+            <div class="col-md-3">
+                <button type="button" class="btn btn-lg btn-default btn-block">Clear</button>
+            </div>
+        </div>
+    }
+</div>

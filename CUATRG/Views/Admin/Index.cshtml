@@ -1,0 +1,58 @@
+﻿@model CUATRG.ViewModels.ListImageViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminPartial.cshtml";
+}
+
+<div class="container-fluid res-lst">
+    <div class="twrp_dv">
+        <div class="page-header my_pg_hd">
+            <h1>Master Images<small></small></h1>
+        </div>
+        <div class="pull-right"><a title="Edit Processed Image" class="my_act_btn" href="#">
+                            <button type="button" class="btn btn-primary btn-xs">
+                                
+                                <span class="glyphicon "></span>
+                                @Html.ActionLink("+ Add New", "AddImage", "Admin", null, new { @class = "btn btn-primary btn-xs" })
+                            </button>
+                        </a></div>
+        <div class="clearfix"></div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th>Album</th>
+                <th>Env Condition</th>
+                <th>Feature</th>
+                <th></th>
+            </tr>
+            </thead>
+             
+            @foreach (CUATRG.Models.tblImage images in Model.Images){ 
+                <tr>
+                    <td>@images.IMG_IDPkey</td>                
+                    <td>@images.IMG_Name</td>
+                    <td>@images.tblAlbum.ALB_Name</td>
+                    <td>@images.tblEnvironmentalCondition.ENC_Name</td>
+                    <td>@images.tblFeature.FTR_Name</td>
+                    <td class="text-right">
+                        <a title="Edit Processed Image" class="my_act_btn" href="#">
+                            <button type="button" class="btn btn-primary btn-xs">
+                                <span class="glyphicon "></span> Edit
+                            </button>
+                        </a>
+                        <a title="Delete Processed Image" class="my_act_btn" href="#">
+                            <button type="button" class="btn btn-danger btn-xs">
+                                <span class="glyphicon "></span> Delete
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+            }
+           
+        </table>
+    </div>
+</div>
+

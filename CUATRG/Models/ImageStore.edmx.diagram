@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f78083b519e347e289b0ebd920581221" Name="Diagram1">
+        <EntityTypeShape EntityType="CUATRGEntities2.tblAlbum" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUATRGEntities2.tblColorMode" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUATRGEntities2.tblEnvironmentalCondition" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUATRGEntities2.tblFeature" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUATRGEntities2.tblFilter" Width="1.5" PointX="6" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUATRGEntities2.tblProcessedImage" Width="1.5" PointX="8.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUATRGEntities2.tblSensorData" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUATRGEntities2.tblSensorDataType" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="CUATRGEntities2.FK_tblProcessedImages_tblColorModes" ManuallyRouted="false" />
+        <AssociationConnector Association="CUATRGEntities2.FK_tblProcessedImages_tblFilters" ManuallyRouted="false" />
+        <AssociationConnector Association="CUATRGEntities2.FK_tblSensorData_tblSensorDataType" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CUATRGEntities2.tblImage" Width="1.5" PointX="4.45935441574983" PointY="25.517331209740291" />
+        <AssociationConnector Association="CUATRGEntities2.FK_tblImages_tblAlbums" />
+        <AssociationConnector Association="CUATRGEntities2.FK_tblImages_tblEnvironmentalConditions" />
+        <AssociationConnector Association="CUATRGEntities2.FK_tblImages_tblFeatures" />
+        <AssociationConnector Association="CUATRGEntities2.FK_tblProcessedImages_tblImages" />
+        <AssociationConnector Association="CUATRGEntities2.FK_tblSensorData_tblImages" />
+        <EntityTypeShape EntityType="CUATRGEntities2.tblMetaType" Width="1.5" PointX="2.0115360906401349" PointY="30.177977546201078" />
+        <EntityTypeShape EntityType="CUATRGEntities2.tblMetaData" Width="1.5" PointX="11.230325549482519" PointY="18.512566053547229" />
+        <AssociationConnector Association="CUATRGEntities2.FK_tblMetaData_tblImages" />
+        <AssociationConnector Association="CUATRGEntities2.FK_tblMetaData_tblMetaType" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

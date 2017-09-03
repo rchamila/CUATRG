@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CUATRGEntities2" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CUATRGEntities4" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="tblAlbums" EntityType="CUATRGEntities2.tblAlbum" />
+    <EntitySet Name="tblColorModes" EntityType="CUATRGEntities2.tblColorMode" />
+    <EntitySet Name="tblEnvironmentalConditions" EntityType="CUATRGEntities2.tblEnvironmentalCondition" />
+    <EntitySet Name="tblFeatures" EntityType="CUATRGEntities2.tblFeature" />
+    <EntitySet Name="tblFilters" EntityType="CUATRGEntities2.tblFilter" />
+    <EntitySet Name="tblImages" EntityType="CUATRGEntities2.tblImage" />
+    <EntitySet Name="tblMetaDatas" EntityType="CUATRGEntities2.tblMetaData" />
+    <EntitySet Name="tblMetaTypes" EntityType="CUATRGEntities2.tblMetaType" />
+    <EntitySet Name="tblProcessedImages" EntityType="CUATRGEntities2.tblProcessedImage" />
+    <EntitySet Name="tblSensorDatas" EntityType="CUATRGEntities2.tblSensorData" />
+    <EntitySet Name="tblSensorDataTypes" EntityType="CUATRGEntities2.tblSensorDataType" />
+    <AssociationSet Name="FK_tblImages_tblAlbums" Association="CUATRGEntities2.FK_tblImages_tblAlbums">
+      <End Role="tblAlbums" EntitySet="tblAlbums" />
+      <End Role="tblImages" EntitySet="tblImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProcessedImages_tblColorModes" Association="CUATRGEntities2.FK_tblProcessedImages_tblColorModes">
+      <End Role="tblColorModes" EntitySet="tblColorModes" />
+      <End Role="tblProcessedImages" EntitySet="tblProcessedImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblImages_tblEnvironmentalConditions" Association="CUATRGEntities2.FK_tblImages_tblEnvironmentalConditions">
+      <End Role="tblEnvironmentalConditions" EntitySet="tblEnvironmentalConditions" />
+      <End Role="tblImages" EntitySet="tblImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblImages_tblFeatures" Association="CUATRGEntities2.FK_tblImages_tblFeatures">
+      <End Role="tblFeatures" EntitySet="tblFeatures" />
+      <End Role="tblImages" EntitySet="tblImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProcessedImages_tblFilters" Association="CUATRGEntities2.FK_tblProcessedImages_tblFilters">
+      <End Role="tblFilters" EntitySet="tblFilters" />
+      <End Role="tblProcessedImages" EntitySet="tblProcessedImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblMetaData_tblImages" Association="CUATRGEntities2.FK_tblMetaData_tblImages">
+      <End Role="tblImages" EntitySet="tblImages" />
+      <End Role="tblMetaData" EntitySet="tblMetaDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblProcessedImages_tblImages" Association="CUATRGEntities2.FK_tblProcessedImages_tblImages">
+      <End Role="tblImages" EntitySet="tblImages" />
+      <End Role="tblProcessedImages" EntitySet="tblProcessedImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSensorData_tblImages" Association="CUATRGEntities2.FK_tblSensorData_tblImages">
+      <End Role="tblImages" EntitySet="tblImages" />
+      <End Role="tblSensorData" EntitySet="tblSensorDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblMetaData_tblMetaType" Association="CUATRGEntities2.FK_tblMetaData_tblMetaType">
+      <End Role="tblMetaType" EntitySet="tblMetaTypes" />
+      <End Role="tblMetaData" EntitySet="tblMetaDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSensorData_tblSensorDataType" Association="CUATRGEntities2.FK_tblSensorData_tblSensorDataType">
+      <End Role="tblSensorDataType" EntitySet="tblSensorDataTypes" />
+      <End Role="tblSensorData" EntitySet="tblSensorDatas" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tblAlbum">
+    <Key>
+      <PropertyRef Name="ALB_IDPkey" />
+    </Key>
+    <Property Name="ALB_IDPkey" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ALB_Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ALB_Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tblImages" Relationship="CUATRGEntities2.FK_tblImages_tblAlbums" FromRole="tblAlbums" ToRole="tblImages" />
+  </EntityType>
+  <EntityType Name="tblColorMode">
+    <Key>
+      <PropertyRef Name="CMD_IDPkey" />
+    </Key>
+    <Property Name="CMD_IDPkey" Type="Int32" Nullable="false" />
+    <Property Name="CMD_Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tblProcessedImages" Relationship="CUATRGEntities2.FK_tblProcessedImages_tblColorModes" FromRole="tblColorModes" ToRole="tblProcessedImages" />
+  </EntityType>
+  <EntityType Name="tblEnvironmentalCondition">
+    <Key>
+      <PropertyRef Name="ENC_IDPkey" />
+    </Key>
+    <Property Name="ENC_IDPkey" Type="Int32" Nullable="false" />
+    <Property Name="ENC_Description" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ENC_Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tblImages" Relationship="CUATRGEntities2.FK_tblImages_tblEnvironmentalConditions" FromRole="tblEnvironmentalConditions" ToRole="tblImages" />
+  </EntityType>
+  <EntityType Name="tblFeature">
+    <Key>
+      <PropertyRef Name="FTR_IDPkey" />
+    </Key>
+    <Property Name="FTR_IDPkey" Type="Int32" Nullable="false" />
+    <Property Name="FTR_Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tblImages" Relationship="CUATRGEntities2.FK_tblImages_tblFeatures" FromRole="tblFeatures" ToRole="tblImages" />
+  </EntityType>
+  <EntityType Name="tblFilter">
+    <Key>
+      <PropertyRef Name="FLT_IDPkey" />
+    </Key>
+    <Property Name="FLT_IDPkey" Type="Int32" Nullable="false" />
+    <Property Name="FLT_Name" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <NavigationProperty Name="tblProcessedImages" Relationship="CUATRGEntities2.FK_tblProcessedImages_tblFilters" FromRole="tblFilters" ToRole="tblProcessedImages" />
+  </EntityType>
+  <EntityType Name="tblImage">
+    <Key>
+      <PropertyRef Name="IMG_IDPkey" />
+    </Key>
+    <Property Name="IMG_IDPkey" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="IMG_Name" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="ALB_IDFkey" Type="Int32" Nullable="false" />
+    <Property Name="FTR_IDFkey" Type="Int32" Nullable="false" />
+    <Property Name="ENC_IDFkey" Type="Int32" Nullable="false" />
+    <Property Name="IMG_Path" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tblAlbum" Relationship="CUATRGEntities2.FK_tblImages_tblAlbums" FromRole="tblImages" ToRole="tblAlbums" />
+    <NavigationProperty Name="tblEnvironmentalCondition" Relationship="CUATRGEntities2.FK_tblImages_tblEnvironmentalConditions" FromRole="tblImages" ToRole="tblEnvironmentalConditions" />
+    <NavigationProperty Name="tblFeature" Relationship="CUATRGEntities2.FK_tblImages_tblFeatures" FromRole="tblImages" ToRole="tblFeatures" />
+    <NavigationProperty Name="tblMetaDatas" Relationship="CUATRGEntities2.FK_tblMetaData_tblImages" FromRole="tblImages" ToRole="tblMetaData" />
+    <NavigationProperty Name="tblProcessedImages" Relationship="CUATRGEntities2.FK_tblProcessedImages_tblImages" FromRole="tblImages" ToRole="tblProcessedImages" />
+    <NavigationProperty Name="tblSensorDatas" Relationship="CUATRGEntities2.FK_tblSensorData_tblImages" FromRole="tblImages" ToRole="tblSensorData" />
+  </EntityType>
+  <EntityType Name="tblMetaData">
+    <Key>
+      <PropertyRef Name="MTD_IDPkey" />
+    </Key>
+    <Property Name="MTD_IDPkey" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="MTD_Value" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="IMG_IDFkey" Type="Int32" Nullable="false" />
+    <Property Name="MTT_IDFkey" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblImage" Relationship="CUATRGEntities2.FK_tblMetaData_tblImages" FromRole="tblMetaData" ToRole="tblImages" />
+    <NavigationProperty Name="tblMetaType" Relationship="CUATRGEntities2.FK_tblMetaData_tblMetaType" FromRole="tblMetaData" ToRole="tblMetaType" />
+  </EntityType>
+  <EntityType Name="tblMetaType">
+    <Key>
+      <PropertyRef Name="MTT_IDPkey" />
+    </Key>
+    <Property Name="MTT_IDPkey" Type="Int32" Nullable="false" />
+    <Property Name="MTT_Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tblMetaDatas" Relationship="CUATRGEntities2.FK_tblMetaData_tblMetaType" FromRole="tblMetaType" ToRole="tblMetaData" />
+  </EntityType>
+  <EntityType Name="tblProcessedImage">
+    <Key>
+      <PropertyRef Name="PIM_IDPkey" />
+    </Key>
+    <Property Name="PIM_IDPkey" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="PIM_Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="FLT_IDFkey" Type="Int32" Nullable="false" />
+    <Property Name="CMD_IDFkey" Type="Int32" Nullable="false" />
+    <Property Name="IMG_IDFkey" Type="Int32" Nullable="false" />
+    <Property Name="PIM_Path" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tblColorMode" Relationship="CUATRGEntities2.FK_tblProcessedImages_tblColorModes" FromRole="tblProcessedImages" ToRole="tblColorModes" />
+    <NavigationProperty Name="tblFilter" Relationship="CUATRGEntities2.FK_tblProcessedImages_tblFilters" FromRole="tblProcessedImages" ToRole="tblFilters" />
+    <NavigationProperty Name="tblImage" Relationship="CUATRGEntities2.FK_tblProcessedImages_tblImages" FromRole="tblProcessedImages" ToRole="tblImages" />
+  </EntityType>
+  <EntityType Name="tblSensorData">
+    <Key>
+      <PropertyRef Name="SND_IDPkey" />
+    </Key>
+    <Property Name="SND_IDPkey" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="IMG_IDFkey" Type="Int32" Nullable="false" />
+    <Property Name="SDT_IDFkey" Type="Int32" Nullable="false" />
+    <Property Name="SDT_Value" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="tblImage" Relationship="CUATRGEntities2.FK_tblSensorData_tblImages" FromRole="tblSensorData" ToRole="tblImages" />
+    <NavigationProperty Name="tblSensorDataType" Relationship="CUATRGEntities2.FK_tblSensorData_tblSensorDataType" FromRole="tblSensorData" ToRole="tblSensorDataType" />
+  </EntityType>
+  <EntityType Name="tblSensorDataType">
+    <Key>
+      <PropertyRef Name="SDT_IDPkey" />
+    </Key>
+    <Property Name="SDT_IDPkey" Type="Int32" Nullable="false" />
+    <Property Name="SDT_Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tblSensorDatas" Relationship="CUATRGEntities2.FK_tblSensorData_tblSensorDataType" FromRole="tblSensorDataType" ToRole="tblSensorData" />
+  </EntityType>
+  <Association Name="FK_tblImages_tblAlbums">
+    <End Role="tblAlbums" Type="CUATRGEntities2.tblAlbum" Multiplicity="1" />
+    <End Role="tblImages" Type="CUATRGEntities2.tblImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAlbums">
+        <PropertyRef Name="ALB_IDPkey" />
+      </Principal>
+      <Dependent Role="tblImages">
+        <PropertyRef Name="ALB_IDFkey" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProcessedImages_tblColorModes">
+    <End Role="tblColorModes" Type="CUATRGEntities2.tblColorMode" Multiplicity="1" />
+    <End Role="tblProcessedImages" Type="CUATRGEntities2.tblProcessedImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblColorModes">
+        <PropertyRef Name="CMD_IDPkey" />
+      </Principal>
+      <Dependent Role="tblProcessedImages">
+        <PropertyRef Name="CMD_IDFkey" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblImages_tblEnvironmentalConditions">
+    <End Role="tblEnvironmentalConditions" Type="CUATRGEntities2.tblEnvironmentalCondition" Multiplicity="1" />
+    <End Role="tblImages" Type="CUATRGEntities2.tblImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEnvironmentalConditions">
+        <PropertyRef Name="ENC_IDPkey" />
+      </Principal>
+      <Dependent Role="tblImages">
+        <PropertyRef Name="ENC_IDFkey" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblImages_tblFeatures">
+    <End Role="tblFeatures" Type="CUATRGEntities2.tblFeature" Multiplicity="1" />
+    <End Role="tblImages" Type="CUATRGEntities2.tblImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFeatures">
+        <PropertyRef Name="FTR_IDPkey" />
+      </Principal>
+      <Dependent Role="tblImages">
+        <PropertyRef Name="FTR_IDFkey" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProcessedImages_tblFilters">
+    <End Role="tblFilters" Type="CUATRGEntities2.tblFilter" Multiplicity="1" />
+    <End Role="tblProcessedImages" Type="CUATRGEntities2.tblProcessedImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFilters">
+        <PropertyRef Name="FLT_IDPkey" />
+      </Principal>
+      <Dependent Role="tblProcessedImages">
+        <PropertyRef Name="FLT_IDFkey" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblMetaData_tblImages">
+    <End Role="tblImages" Type="CUATRGEntities2.tblImage" Multiplicity="1" />
+    <End Role="tblMetaData" Type="CUATRGEntities2.tblMetaData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblImages">
+        <PropertyRef Name="IMG_IDPkey" />
+      </Principal>
+      <Dependent Role="tblMetaData">
+        <PropertyRef Name="IMG_IDFkey" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblProcessedImages_tblImages">
+    <End Role="tblImages" Type="CUATRGEntities2.tblImage" Multiplicity="1" />
+    <End Role="tblProcessedImages" Type="CUATRGEntities2.tblProcessedImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblImages">
+        <PropertyRef Name="IMG_IDPkey" />
+      </Principal>
+      <Dependent Role="tblProcessedImages">
+        <PropertyRef Name="IMG_IDFkey" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSensorData_tblImages">
+    <End Role="tblImages" Type="CUATRGEntities2.tblImage" Multiplicity="1" />
+    <End Role="tblSensorData" Type="CUATRGEntities2.tblSensorData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblImages">
+        <PropertyRef Name="IMG_IDPkey" />
+      </Principal>
+      <Dependent Role="tblSensorData">
+        <PropertyRef Name="IMG_IDFkey" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblMetaData_tblMetaType">
+    <End Role="tblMetaType" Type="CUATRGEntities2.tblMetaType" Multiplicity="1" />
+    <End Role="tblMetaData" Type="CUATRGEntities2.tblMetaData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblMetaType">
+        <PropertyRef Name="MTT_IDPkey" />
+      </Principal>
+      <Dependent Role="tblMetaData">
+        <PropertyRef Name="MTT_IDFkey" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSensorData_tblSensorDataType">
+    <End Role="tblSensorDataType" Type="CUATRGEntities2.tblSensorDataType" Multiplicity="1" />
+    <End Role="tblSensorData" Type="CUATRGEntities2.tblSensorData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSensorDataType">
+        <PropertyRef Name="SDT_IDPkey" />
+      </Principal>
+      <Dependent Role="tblSensorData">
+        <PropertyRef Name="SDT_IDFkey" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

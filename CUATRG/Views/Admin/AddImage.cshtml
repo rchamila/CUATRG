@@ -1,0 +1,95 @@
+﻿@model CUATRG.ViewModels.AddImageViewModel
+
+@{
+    ViewBag.Title = "AddImage";
+    Layout = "~/Views/Shared/_AdminPartial.cshtml";
+}
+
+<div class="container-fluid res-lst">
+    <div class="twrp_dv">
+        <div class="page-header my_pg_hd">
+            <h1>Master Image<small></small></h1>
+        </div>
+
+        @using (Html.BeginForm("AddImage", "Admin", FormMethod.Post, new { id = "calcForm", @class = "form-horizontal", enctype = "multipart/form-data" }))
+        { 
+            <div class="form-group">
+
+                <div class="bg-danger col-sm-7"></div>
+                @ViewBag.Message
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Image Name</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="name" value="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Location</label>
+                <div class="col-sm-5">
+                    @Html.DropDownList("ddlAlbums",
+                                                new SelectList(
+                                                    Model.Albums.Select(x => new { Value = x.ALB_IDPkey, Text = x.ALB_Name }),
+                                                    "Value",
+                                                    "Text"
+                                                   ),
+                                                 "-- Select Album --",
+                                                new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Environmental Conditions</label>
+                <div class="col-sm-5">
+                    @Html.DropDownList("ddlConditions",
+                                                new SelectList(
+                                                    Model.Conditions.Select(x => new { Value = x.ENC_IDPkey, Text = x.ENC_Name }),
+                                                    "Value",
+                                                    "Text"
+                                                   ),
+                                                 "-- Select Condition --",
+                                                new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Feature</label>
+                <div class="col-sm-5">
+                    @Html.DropDownList("ddlFeatures",
+                                                new SelectList(
+                                                    Model.Features.Select(x => new { Value = x.FTR_IDPkey, Text = x.FTR_Name }),
+                                                    "Value",
+                                                    "Text"
+                                                ),
+                                                 "-- Select Feature --",
+                                                new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Image</label>
+                <div class="col-sm-5">
+                    <input id="master_image" type="file" accept="image/*" name="masterimage">
+                    <input id="master_image_nm" type="hidden" name="image" value="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Sensor Data</label>
+                <div class="col-sm-5">
+                    <input type="file" name="sensordata">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Meta Data</label>
+                <div class="col-sm-5">
+                    <input type="file" name="metadata">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-5">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                     <button type="submit" class="btn btn-primary">Cancel</button>
+                </div>
+               
+            </div>
+        }
+    </div>
+    <hr>
+</div>

@@ -1,0 +1,8 @@
+D:\Projects\exif_source_demo\ExifMetadata\bin\Debug\ExifMetadata.dll
+D:\Projects\exif_source_demo\ExifMetadata\bin\Debug\ExifMetadata.pdb
+D:\Projects\exif_source_demo\ExifMetadata\obj\Debug\ExifMetadata.dll
+D:\Projects\exif_source_demo\ExifMetadata\obj\Debug\ExifMetadata.pdb
+D:\Projects\CUATRG\ExifMetadata\bin\Debug\ExifMetadata.dll
+D:\Projects\CUATRG\ExifMetadata\bin\Debug\ExifMetadata.pdb
+D:\Projects\CUATRG\ExifMetadata\obj\Debug\ExifMetadata.dll
+D:\Projects\CUATRG\ExifMetadata\obj\Debug\ExifMetadata.pdb

@@ -1,0 +1,386 @@
+2016-04-07 22:07:38,497 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-04-17 22:38:09,702 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-04-17 22:38:10,201 ERROR CUATRG.Controllers.AlbumController - Error error logging
+System.Data.MetadataException: Schema specified is not valid. Errors: 
+The relationship 'CUATRGEntities2.FK_tblImages_tblAlbums' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_SensorDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+The relationship 'CUATRGEntities2.FK_tblImages_tblEnvironmentalConditions' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_SensorDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+The relationship 'CUATRGEntities2.FK_tblImages_tblFeatures' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_SensorDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+The relationship 'CUATRGEntities2.FK_tblMetaData_tblImages' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_SensorDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+The relationship 'CUATRGEntities2.FK_tblProcessedImages_tblImages' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_SensorDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+The relationship 'CUATRGEntities2.FK_tblSensorData_tblImages' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_SensorDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+   at System.Data.Metadata.Edm.ObjectItemCollection.LoadAssemblyFromCache(ObjectItemCollection objectItemCollection, Assembly assembly, Boolean loadReferencedAssemblies, EdmItemCollection edmItemCollection, Action`1 logLoadMessage)
+   at System.Data.Metadata.Edm.MetadataWorkspace.LoadFromAssembly(Assembly assembly, Action`1 logLoadMessage)
+   at System.Data.Metadata.Edm.MetadataWorkspace.LoadFromAssembly(Assembly assembly)
+   at System.Data.Entity.Internal.InternalContext.TryUpdateEntitySetMappingsForType(Type entityType)
+   at System.Data.Entity.Internal.InternalContext.UpdateEntitySetMappingsForType(Type entityType)
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Count[TSource](IQueryable`1 source)
+   at CUATRG.Controllers.AlbumController.Index() in d:\Projects\CUATRG\CUATRG\Controllers\AlbumController.cs:line 31
+2016-04-17 22:39:39,455 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-04-17 22:39:39,501 ERROR CUATRG.Controllers.AlbumController - Error error logging
+System.Data.MetadataException: Schema specified is not valid. Errors: 
+The relationship 'CUATRGEntities2.FK_tblImages_tblAlbums' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_SensorDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+The relationship 'CUATRGEntities2.FK_tblImages_tblEnvironmentalConditions' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_SensorDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+The relationship 'CUATRGEntities2.FK_tblImages_tblFeatures' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_SensorDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+The relationship 'CUATRGEntities2.FK_tblMetaData_tblImages' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_SensorDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+The relationship 'CUATRGEntities2.FK_tblProcessedImages_tblImages' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_SensorDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+The relationship 'CUATRGEntities2.FK_tblSensorData_tblImages' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_SensorDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+   at System.Data.Metadata.Edm.ObjectItemCollection.LoadAssemblyFromCache(ObjectItemCollection objectItemCollection, Assembly assembly, Boolean loadReferencedAssemblies, EdmItemCollection edmItemCollection, Action`1 logLoadMessage)
+   at System.Data.Metadata.Edm.MetadataWorkspace.LoadFromAssembly(Assembly assembly, Action`1 logLoadMessage)
+   at System.Data.Metadata.Edm.MetadataWorkspace.LoadFromAssembly(Assembly assembly)
+   at System.Data.Entity.Internal.InternalContext.TryUpdateEntitySetMappingsForType(Type entityType)
+   at System.Data.Entity.Internal.InternalContext.UpdateEntitySetMappingsForType(Type entityType)
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Count[TSource](IQueryable`1 source)
+   at CUATRG.Controllers.AlbumController.Index() in d:\Projects\CUATRG\CUATRG\Controllers\AlbumController.cs:line 31
+2016-04-17 22:40:30,823 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-04-17 22:40:30,905 ERROR CUATRG.Controllers.AlbumController - Error error logging
+System.Data.MetadataException: Schema specified is not valid. Errors: 
+The relationship 'CUATRGEntities2.FK_tblImages_tblAlbums' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_MetaDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+The relationship 'CUATRGEntities2.FK_tblImages_tblEnvironmentalConditions' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_MetaDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+The relationship 'CUATRGEntities2.FK_tblImages_tblFeatures' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_MetaDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+The relationship 'CUATRGEntities2.FK_tblMetaData_tblImages' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_MetaDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+The relationship 'CUATRGEntities2.FK_tblProcessedImages_tblImages' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_MetaDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+The relationship 'CUATRGEntities2.FK_tblSensorData_tblImages' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_MetaDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+   at System.Data.Metadata.Edm.ObjectItemCollection.LoadAssemblyFromCache(ObjectItemCollection objectItemCollection, Assembly assembly, Boolean loadReferencedAssemblies, EdmItemCollection edmItemCollection, Action`1 logLoadMessage)
+   at System.Data.Metadata.Edm.MetadataWorkspace.LoadFromAssembly(Assembly assembly, Action`1 logLoadMessage)
+   at System.Data.Metadata.Edm.MetadataWorkspace.LoadFromAssembly(Assembly assembly)
+   at System.Data.Entity.Internal.InternalContext.TryUpdateEntitySetMappingsForType(Type entityType)
+   at System.Data.Entity.Internal.InternalContext.UpdateEntitySetMappingsForType(Type entityType)
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Count[TSource](IQueryable`1 source)
+   at CUATRG.Controllers.AlbumController.Index() in d:\Projects\CUATRG\CUATRG\Controllers\AlbumController.cs:line 31
+2016-04-17 22:41:23,425 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-04-18 19:28:19,202 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-04-18 20:39:34,228 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-04-18 20:39:34,776 ERROR CUATRG.Controllers.AlbumController - Error error logging
+System.Data.MetadataException: Schema specified is not valid. Errors: 
+The relationship 'CUATRGEntities2.FK_tblImages_tblAlbums' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_SensorDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+The relationship 'CUATRGEntities2.FK_tblImages_tblEnvironmentalConditions' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_SensorDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+The relationship 'CUATRGEntities2.FK_tblImages_tblFeatures' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_SensorDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+The relationship 'CUATRGEntities2.FK_tblMetaData_tblImages' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_SensorDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+The relationship 'CUATRGEntities2.FK_tblProcessedImages_tblImages' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_SensorDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+The relationship 'CUATRGEntities2.FK_tblSensorData_tblImages' was not loaded because the type 'CUATRGEntities2.tblImage' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'IMG_SensorDataPath' does not exist on the type 'CUATRG.Models.tblImage'.
+
+
+   at System.Data.Metadata.Edm.ObjectItemCollection.LoadAssemblyFromCache(ObjectItemCollection objectItemCollection, Assembly assembly, Boolean loadReferencedAssemblies, EdmItemCollection edmItemCollection, Action`1 logLoadMessage)
+   at System.Data.Metadata.Edm.MetadataWorkspace.LoadFromAssembly(Assembly assembly, Action`1 logLoadMessage)
+   at System.Data.Metadata.Edm.MetadataWorkspace.LoadFromAssembly(Assembly assembly)
+   at System.Data.Entity.Internal.InternalContext.TryUpdateEntitySetMappingsForType(Type entityType)
+   at System.Data.Entity.Internal.InternalContext.UpdateEntitySetMappingsForType(Type entityType)
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Count[TSource](IQueryable`1 source)
+   at CUATRG.Controllers.AlbumController.Index() in d:\Projects\CUATRG\CUATRG\Controllers\AlbumController.cs:line 31
+2016-04-18 20:41:59,611 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-04-18 20:57:18,782 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-18 20:57:19,547 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-18 20:57:26,412 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-18 20:57:26,417 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-18 20:57:29,668 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-18 20:57:29,684 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-25 08:24:09,402 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-04-25 08:24:09,512 ERROR CUATRG.Controllers.AlbumController - Error error logging
+System.Data.MetadataException: Schema specified is not valid. Errors: 
+The relationship 'CUATRGEntities2.FK_tblMetaData_tblMetaType' was not loaded because the type 'CUATRGEntities2.tblMetaType' is not available.
+The following information may be useful in resolving the previous error:
+The required property 'MTT_Description' does not exist on the type 'CUATRG.Models.tblMetaType'.
+
+
+   at System.Data.Metadata.Edm.ObjectItemCollection.LoadAssemblyFromCache(ObjectItemCollection objectItemCollection, Assembly assembly, Boolean loadReferencedAssemblies, EdmItemCollection edmItemCollection, Action`1 logLoadMessage)
+   at System.Data.Metadata.Edm.MetadataWorkspace.LoadFromAssembly(Assembly assembly, Action`1 logLoadMessage)
+   at System.Data.Metadata.Edm.MetadataWorkspace.LoadFromAssembly(Assembly assembly)
+   at System.Data.Entity.Internal.InternalContext.TryUpdateEntitySetMappingsForType(Type entityType)
+   at System.Data.Entity.Internal.InternalContext.UpdateEntitySetMappingsForType(Type entityType)
+   at System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.get_InternalContext()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Linq.IQueryable.get_Provider()
+   at System.Linq.Queryable.Count[TSource](IQueryable`1 source)
+   at CUATRG.Controllers.AlbumController.Index() in d:\Projects\CUATRG\CUATRG\Controllers\AlbumController.cs:line 31
+2016-04-25 08:25:37,342 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-04-25 08:26:24,132 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-25 08:26:24,137 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-25 08:27:12,103 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-25 08:27:20,809 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-25 08:29:02,003 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-25 08:29:02,026 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-25 08:30:16,309 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-25 08:30:16,336 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-25 08:32:46,946 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-25 08:32:46,963 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\2
+2016-04-26 21:40:29,387 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-26 21:40:29,412 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-26 21:42:06,755 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-26 21:42:06,760 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-26 21:44:00,015 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-26 21:44:00,033 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-26 21:45:39,880 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-26 21:45:39,899 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-26 21:47:04,047 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-04-26 21:51:17,832 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-26 21:51:17,852 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\3
+2016-04-26 21:51:38,837 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-26 21:51:38,842 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\3
+2016-04-26 21:51:48,451 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-04-26 21:53:45,782 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-26 21:53:45,794 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-26 21:55:20,642 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-04-26 21:58:44,969 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-26 21:58:44,977 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-28 21:38:42,684 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-28 21:38:42,714 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-28 21:41:37,443 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-28 21:41:37,453 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\2
+2016-04-28 21:43:13,667 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-28 21:43:13,699 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-28 21:47:55,286 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-28 21:47:55,302 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-28 21:52:16,834 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-28 21:52:16,843 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-28 21:54:52,013 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-28 21:54:52,028 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-28 21:56:47,102 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-28 21:56:47,135 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-28 22:02:33,355 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-28 22:02:33,383 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-28 22:03:47,241 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-04-28 22:03:47,879 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-04-28 22:04:46,949 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-28 22:04:46,959 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\3
+2016-04-28 22:05:01,308 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-04-28 22:07:34,949 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-04-28 22:11:01,124 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-28 22:11:01,127 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-28 22:11:01,144 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-28 22:11:01,147 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-28 22:11:01,149 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-04-28 22:11:01,152 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-04-28 22:11:27,953 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-04-29 22:50:37,175 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-04-29 23:00:14,341 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-04-29 23:04:57,862 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-01 00:11:19,666 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-01 00:21:34,213 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-01 00:24:38,393 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-07 23:03:22,445 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-07 23:03:39,732 ERROR CUATRG.Controllers.AlbumController - Error error logging
+System.Data.EntityException: The underlying provider failed on Open. ---> System.Data.SqlClient.SqlException: Connection Timeout Expired.  The timeout period elapsed while attempting to consume the pre-login handshake acknowledgement.  This could be because the pre-login handshake failed or the server was unable to respond back in time.  The duration spent while attempting to connect to this server was - [Pre-Login] initialization=15894; handshake=4;  ---> System.ComponentModel.Win32Exception: The wait operation timed out
+   --- End of inner exception stack trace ---
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParser.ConsumePreLoginHandshake(SqlAuthenticationMethod authType, Boolean encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean& marsCapable, Boolean& fedAuthRequired)
+   at System.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, Boolean encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean withFailover, SqlAuthenticationMethod authType)
+   at System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at System.Data.EntityClient.EntityConnection.OpenStoreConnectionIf(Boolean openCondition, DbConnection storeConnectionToOpen, DbConnection originalConnection, String exceptionCode, String attemptedOperation, Boolean& closeStoreConnectionOnFailure)
+   --- End of inner exception stack trace ---
+   at System.Data.EntityClient.EntityConnection.OpenStoreConnectionIf(Boolean openCondition, DbConnection storeConnectionToOpen, DbConnection originalConnection, String exceptionCode, String attemptedOperation, Boolean& closeStoreConnectionOnFailure)
+   at System.Data.EntityClient.EntityConnection.Open()
+   at System.Data.Objects.ObjectContext.EnsureConnection()
+   at System.Data.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Objects.ObjectQuery`1.System.Collections.Generic.IEnumerable<T>.GetEnumerator()
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at System.Data.Objects.ELinq.ObjectQueryProvider.<>c__DisplayClass0`1.<GetElementFunction>b__7(IEnumerable`1 sequence)
+   at System.Data.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   at System.Data.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[S](Expression expression)
+   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.Count[TSource](IQueryable`1 source)
+   at CUATRG.Controllers.AlbumController.Index() in d:\Projects\CUATRG\CUATRG\Controllers\AlbumController.cs:line 31
+2016-05-08 20:25:02,404 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-10 22:30:36,442 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-10 22:30:53,616 ERROR CUATRG.Controllers.AlbumController - Error error logging
+System.Data.EntityException: The underlying provider failed on Open. ---> System.Data.SqlClient.SqlException: Connection Timeout Expired.  The timeout period elapsed while attempting to consume the pre-login handshake acknowledgement.  This could be because the pre-login handshake failed or the server was unable to respond back in time.  The duration spent while attempting to connect to this server was - [Pre-Login] initialization=16025; handshake=1;  ---> System.ComponentModel.Win32Exception: The wait operation timed out
+   --- End of inner exception stack trace ---
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParser.ConsumePreLoginHandshake(SqlAuthenticationMethod authType, Boolean encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean& marsCapable, Boolean& fedAuthRequired)
+   at System.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, Boolean encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean withFailover, SqlAuthenticationMethod authType)
+   at System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at System.Data.EntityClient.EntityConnection.OpenStoreConnectionIf(Boolean openCondition, DbConnection storeConnectionToOpen, DbConnection originalConnection, String exceptionCode, String attemptedOperation, Boolean& closeStoreConnectionOnFailure)
+   --- End of inner exception stack trace ---
+   at System.Data.EntityClient.EntityConnection.OpenStoreConnectionIf(Boolean openCondition, DbConnection storeConnectionToOpen, DbConnection originalConnection, String exceptionCode, String attemptedOperation, Boolean& closeStoreConnectionOnFailure)
+   at System.Data.EntityClient.EntityConnection.Open()
+   at System.Data.Objects.ObjectContext.EnsureConnection()
+   at System.Data.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Objects.ObjectQuery`1.System.Collections.Generic.IEnumerable<T>.GetEnumerator()
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at System.Data.Objects.ELinq.ObjectQueryProvider.<>c__DisplayClass0`1.<GetElementFunction>b__7(IEnumerable`1 sequence)
+   at System.Data.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   at System.Data.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[S](Expression expression)
+   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.Count[TSource](IQueryable`1 source)
+   at CUATRG.Controllers.AlbumController.Index() in d:\Projects\CUATRG\CUATRG\Controllers\AlbumController.cs:line 31
+2016-05-10 22:33:27,659 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-13 22:26:20,305 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-13 22:31:40,203 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-13 22:34:47,582 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-13 22:35:59,373 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-13 22:37:32,283 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-13 22:41:58,846 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-13 22:55:19,099 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-13 22:56:27,802 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-13 23:05:36,733 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-13 23:06:39,943 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-13 23:07:35,916 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-13 23:09:35,025 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-13 23:12:03,794 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-13 23:13:02,194 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-13 23:15:42,196 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-14 23:32:53,481 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-14 23:52:21,979 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-14 23:52:25,229 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-15 22:43:42,296 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-28 23:05:59,242 INFO CUATRG.Controllers.AlbumController - Retriving albums
+2016-05-29 17:42:27,723 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-05-29 17:42:27,738 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-05-29 17:42:27,770 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-05-29 17:42:27,778 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-05-29 17:42:27,785 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-05-29 17:42:27,793 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-05-29 19:30:00,874 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-05-29 19:30:00,917 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-05-29 19:30:01,374 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-05-29 19:30:01,409 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1
+2016-05-29 19:30:02,119 INFO CUATRG.Controllers.AdminController - Reading sensor data file
+2016-05-29 19:30:02,154 INFO CUATRG.Controllers.AdminController - D:\Projects\CUATRG\CUATRG\Images\Albums\1

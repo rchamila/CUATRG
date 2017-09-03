@@ -1,0 +1,85 @@
+﻿@model CUATRG.ViewModels.AddProcessedImageViewModel
+
+@{
+    ViewBag.Title = "AddImage";
+    Layout = "~/Views/Shared/_AdminPartial.cshtml";
+}
+
+<script lang="javascript" type="text/javascript">
+    function GetImages(_albumId) {
+        var procemessage = "<option value='0'> Please wait...</option>";
+        $("#ddlImage").html(procemessage).show();
+        var url = "/GetImagesByAlbumId/";
+
+        $.ajax({
+            url: url,
+            data: { albumid: _albumId },
+            cache: false,
+            type: "POST",
+            success: function (data) {
+                var markup = "<option value='0'>Select City</option>";
+                for (var x = 0; x < data.length; x++) {
+                    markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                }
+                $("#ddlImage").html(markup).show();
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+
+    }
+</script>
+
+<div class="container-fluid res-lst">
+    <div class="twrp_dv">
+        <div class="page-header my_pg_hd">
+            <h1>Processed Image<small></small></h1>
+        </div>
+
+        @using (Html.BeginForm("AddProcessedImage", "Admin", FormMethod.Post, new { id = "calcForm", @class = "form-horizontal", enctype = "multipart/form-data" }))
+        { 
+            <div class="form-group">
+
+                <div class="bg-danger col-sm-7"></div>
+                @ViewBag.Message
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Image Name</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="name" value="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Location</label>
+                <div class="col-sm-5">
+                    @Html.DropDownList("ddlAlbums",
+                                                new SelectList(
+                                                    Model.Albums.Select(x => new { Value = x.ALB_IDPkey, Text = x.ALB_Name }),
+                                                    "Value",
+                                                    "Text"
+                                                   ),
+                                                 "-- Select Album --",
+                                                new { @class = "form-control" , @onchange = "javascript:GetImages(1);"})
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Master Image</label>
+                <div class="col-sm-5">
+                     <select id="ddlImage" name="ddlImage" class="form-control"/>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-5">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                     <button type="submit" class="btn btn-primary">Cancel</button>
+                </div>
+               
+            </div>
+        }
+    </div>
+    <hr>
+</div>

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CUATRG", "CUATRG\CUATRG.csproj", "{5AB0D543-CE90-4CE0-A845-3755E8E83096}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExifMetadata", "ExifMetadata\ExifMetadata.csproj", "{ABD4E13C-1A47-4082-8D77-8F1E9312B1FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5AB0D543-CE90-4CE0-A845-3755E8E83096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AB0D543-CE90-4CE0-A845-3755E8E83096}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AB0D543-CE90-4CE0-A845-3755E8E83096}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AB0D543-CE90-4CE0-A845-3755E8E83096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABD4E13C-1A47-4082-8D77-8F1E9312B1FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABD4E13C-1A47-4082-8D77-8F1E9312B1FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABD4E13C-1A47-4082-8D77-8F1E9312B1FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABD4E13C-1A47-4082-8D77-8F1E9312B1FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

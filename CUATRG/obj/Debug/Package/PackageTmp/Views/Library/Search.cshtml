@@ -1,0 +1,34 @@
+﻿@model CUATRG.ViewModels.LibraryViewModel
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ @if (Model.Images != null && Model.Images.Count > 0)
+            {
+                <table class="grid">
+                    <tr>
+                        <th>Name</th>
+                        <th>Album</th>
+                        <th>Color Mode</th>
+                        <th>Condition</th>
+                        <th>Feature</th>
+                        <th>Filter</th>
+                    </tr>
+
+                    @foreach (CUATRG.Models.tblImage image in Model.Images)
+                    {
+                        <tr>
+                            <td>@image.IMG_Name</td>
+                            <td>@image.tblAlbum.ALB_Name</td>
+                            <td></td>
+                            <td>@image.tblEnvironmentalCondition.ENC_Name</td>
+                            <td>@image.tblFeature.FTR_Name</td>
+                            <td></td>
+                        </tr>
+                    }
+
+
+                </table>
+            }

@@ -1,0 +1,10 @@
+Company		Pick up date	return date	price
+
+Hertz		19/12/2014	30/12/2014	1260.99  --> 8 seater
+
+Europcar	19/12/2014	30/12/2014	1473.35  --> 8 seater
+
+Europcar	19/12/2014	30/12/2014	1606.09  --> 12 seater
+
+Budget		19/12/2014	30/12/2014	1163     --> 8 seater
+

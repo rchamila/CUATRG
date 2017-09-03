@@ -1,0 +1,115 @@
+﻿@model CUATRG.ViewModels.ImageDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    function radiobuttontest(albumId, imageId, processedImageId) {
+        if (processedImageId > 0) {
+            window.location = "details?albumId=" + albumId + "&imageId=" + imageId + "&processedImageId=" + processedImageId;
+        }
+        else {
+            window.location = "details?albumId=" + albumId + "&imageId=" + imageId ;
+        }
+    }
+
+</script>
+
+<div class="container">
+    <ol class="breadcrumb">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Albums</a></li>
+        <li class="active">@Model.Image.tblAlbum.ALB_Name</li>
+    </ol>
+</div>
+<div class="container">
+    <div class="col-md-8">
+        <div class="img-thumbnail">
+            @{
+                    
+                var link = "http://localhost:62309/Images/default.png";
+
+                if (Model != null)
+                {
+                    if (Model.ProcessedImage != null)
+                    {
+                        link = "http://localhost:62309/" + Model.ProcessedImage.PIM_Path;
+                    }
+                    else
+                    {
+                        link = "http://localhost:62309/" + Model.Image.IMG_Path;
+                    }
+                }
+            }
+            <img src="@link" />
+        </div>
+        <div class="col-md-11 well">
+            <div class="col-md-4">
+                <a class="btn btn-lg btn-default btn-block" href="@Url.Action("Details", "Album", new { albumId = Html.Encode(Model.Image.ALB_IDFkey), imageId = Html.Encode(Model.PreviousImage.IMG_IDPkey) })">Prev
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-lg btn-default btn-block" href="#">
+                    @Model.Image.IMG_Name
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-lg btn-default btn-block" href="@Url.Action("Details", "Album", new { albumId = Html.Encode(Model.Image.ALB_IDFkey), imageId = Html.Encode(Model.NextImage.IMG_IDPkey) })">Next
+                </a>
+            </div>
+            <div style="clear: both; height: 20px; width: 100%"></div>
+            <div class="col-lg-12 well">
+                <h3>Apply Filter</h3>
+                <div class="input-group">
+                   @if (Model.ProcessedImage == null)
+                   {
+                       var onClick = String.Format("radiobuttontest({0}, {1}, {2})", Model.Image.ALB_IDFkey, Model.Image.IMG_IDPkey,-1);
+                       @Html.RadioButtonFor(model => model.Image,0, new { @id = "Filter0" , @onclick = onClick,@checked = "checked"})
+                   }
+                   else{
+                       var onClick = String.Format("radiobuttontest({0}, {1}, {2})", Model.Image.ALB_IDFkey, Model.Image.IMG_IDPkey, -1);
+                       @Html.RadioButtonFor(model => model.Image,0, new { @id = "Filter0" , @onclick = onClick})
+                   }
+                    <!-- <input type="radio" value="@Model.Image.IMG_IDPkey" checked="checked" name="ProcessedImage"/>-->
+                    <span style="margin-left: 5px;">Original</span>
+
+                   @foreach (CUATRG.Models.tblProcessedImage processed in Model.Image.tblProcessedImages)
+                    {
+                        var onClick = String.Format("radiobuttontest({0}, {1}, {2})", Model.Image.ALB_IDFkey, Model.Image.IMG_IDPkey, processed.PIM_IDPkey);
+                      
+                       
+                        if (Model.ProcessedImage != null && Model.ProcessedImage.PIM_IDPkey == processed.PIM_IDPkey)
+                        {
+                            @Html.RadioButtonFor(model => model.ProcessedImage,processed.PIM_IDPkey, new { @id = "Filter" + processed.PIM_IDPkey, @onclick = onClick, @checked = "checked"});
+                        }
+                        else{
+                             @Html.RadioButtonFor(model => model.ProcessedImage,processed.PIM_IDPkey, new { @id = "Filter" + processed.PIM_IDPkey, @onclick = onClick});
+                        }
+                       
+                        <span style="margin-left: 5px;">@processed.tblFilter.FLT_Name</span>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 well">
+        <div class="h4">Meta Info:</div>
+        <br />
+        @foreach (CUATRG.Models.tblMetaData meta in Model.Image.tblMetaDatas)
+        {
+            <div class="h4">@meta.tblMetaType.MTT_Name:@meta.MTD_Value</div>
+            <br />
+                    
+        }
+        <div class="well">
+            <div>
+                <button type="button" class="btn btn-lg btn-primary btn-block">Download Sensor Data</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
