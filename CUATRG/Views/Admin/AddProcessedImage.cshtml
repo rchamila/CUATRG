@@ -9,7 +9,7 @@
     function GetImages(_albumId) {
         var procemessage = "<option value='0'> Please wait...</option>";
         $("#ddlImage").html(procemessage).show();
-        var url = "/GetImagesByAlbumId/";
+        var url = "/Admin/GetImagesByAlbumId/";
 
         $.ajax({
             url: url,

@@ -58,27 +58,21 @@ namespace CUATRG.Controllers
             try
             {
                 int albumId = -1;
-                if (int.TryParse(ddlAlbums, out albumId))
+                if (!int.TryParse(ddlAlbums, out albumId))
                 {
-                    //results = imageDB.tblImages.ToList().FindAll(i => i.ALB_IDFkey == albumId);
+                    throw new InvalidDataException("Error in album id");
                 }
 
                 int conditionid = -1;
-                if (int.TryParse(ddlConditions, out conditionid))
+                if (!int.TryParse(ddlConditions, out conditionid))
                 {
-                    //results = results.FindAll(i => i.ENC_IDFkey == conditionid);
-                }
-
-                int featureId = -1;
-                if (int.TryParse(ddlFeatures, out featureId))
-                {
-                    //results = results.FindAll(i => i.FTR_IDFkey == featureId);
+                    throw new InvalidDataException("Error in condition id");
                 }
 
                 int filterId = -1;
-                if (int.TryParse(ddlFeatures, out filterId))
+                if (!int.TryParse(ddlFeatures, out filterId))
                 {
-                    //results = results.FindAll(i => i.FTR_IDFkey == featureId);
+                    throw new InvalidDataException("Error in filter id");
                 }
                 var image = new tblImage();
 
@@ -204,27 +198,21 @@ namespace CUATRG.Controllers
             try
             {
                 int albumId = -1;
-                if (int.TryParse(ddlAlbums, out albumId))
+                if (!int.TryParse(ddlAlbums, out albumId))
                 {
-                    //results = imageDB.tblImages.ToList().FindAll(i => i.ALB_IDFkey == albumId);
+                    throw new InvalidDataException("Error in album id");
                 }
 
                 int conditionid = -1;
-                if (int.TryParse(ddlConditions, out conditionid))
+                if (!int.TryParse(ddlConditions, out conditionid))
                 {
-                    //results = results.FindAll(i => i.ENC_IDFkey == conditionid);
-                }
-
-                int featureId = -1;
-                if (int.TryParse(ddlFeatures, out featureId))
-                {
-                    //results = results.FindAll(i => i.FTR_IDFkey == featureId);
-                }
+                    throw new InvalidDataException("Error in condition id");
+                } 
 
                 int filterId = -1;
-                if (int.TryParse(ddlFeatures, out filterId))
+                if (!int.TryParse(ddlFeatures, out filterId))
                 {
-                    //results = results.FindAll(i => i.FTR_IDFkey == featureId);
+                    throw new InvalidDataException("Error in filter id");
                 }
                 var image = new tblImage();
 
