@@ -30,11 +30,11 @@ namespace CUATRG.Models
         public DbSet<tblEnvironmentalCondition> tblEnvironmentalConditions { get; set; }
         public DbSet<tblFeature> tblFeatures { get; set; }
         public DbSet<tblFilter> tblFilters { get; set; }
-        public DbSet<tblImage> tblImages { get; set; }
-        public DbSet<tblMetaData> tblMetaDatas { get; set; }
-        public DbSet<tblMetaType> tblMetaTypes { get; set; }
         public DbSet<tblProcessedImage> tblProcessedImages { get; set; }
         public DbSet<tblSensorData> tblSensorDatas { get; set; }
         public DbSet<tblSensorDataType> tblSensorDataTypes { get; set; }
+        public DbSet<tblImage> tblImages { get; set; }
+        public DbSet<tblMetaType> tblMetaTypes { get; set; }
+        public DbSet<tblMetaData> tblMetaDatas { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using CUATRG.Models;
+﻿using CUATRG.Common;
+using CUATRG.Models;
 using CUATRG.ViewModels;
 using FileHelpers;
 using LevDan.Exif;
@@ -17,7 +18,7 @@ namespace CUATRG.Controllers
         private readonly log4net.ILog log = log4net.LogManager.GetLogger
                 (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private CUATRGEntities4 imageDB = new CUATRGEntities4();
-        
+
         //
         // GET: /Admin/
 
@@ -43,7 +44,7 @@ namespace CUATRG.Controllers
         {
             var viewModel = new AddImageViewModel()
             {
-                Albums = imageDB.tblAlbums.ToList(),             
+                Albums = imageDB.tblAlbums.ToList(),
                 Conditions = imageDB.tblEnvironmentalConditions.ToList(),
                 Features = imageDB.tblFeatures.ToList()
             };
@@ -55,118 +56,78 @@ namespace CUATRG.Controllers
         public ActionResult AddImage(string name, string ddlAlbums, string ddlConditions,
                                     string ddlFeatures, HttpPostedFileBase masterimage, HttpPostedFileBase sensordata, HttpPostedFileBase metadata)
         {
+            var image = new tblImage();
+
             try
             {
                 int albumId = -1;
-                if (!int.TryParse(ddlAlbums, out albumId))
-                {
-                    throw new InvalidDataException("Error in album id");
-                }
+                if (!int.TryParse(ddlAlbums, out albumId)) 
+                    throw new InvalidDataException("Error in album id"); 
 
                 int conditionid = -1;
-                if (!int.TryParse(ddlConditions, out conditionid))
-                {
-                    throw new InvalidDataException("Error in condition id");
-                }
+                if (!int.TryParse(ddlConditions, out conditionid)) 
+                    throw new InvalidDataException("Error in condition id"); 
 
                 int filterId = -1;
-                if (!int.TryParse(ddlFeatures, out filterId))
-                {
-                    throw new InvalidDataException("Error in filter id");
-                }
-                var image = new tblImage();
-
-                //set student name
+                if (!int.TryParse(ddlFeatures, out filterId)) 
+                    throw new InvalidDataException("Error in filter id");  
+               
+                //set image data
                 image.IMG_Name = name;
-                image.ALB_IDFkey = albumId;
-                image.ENC_IDFkey = conditionid;
-                image.FTR_IDFkey = filterId;
+                var dbCtx = new CUATRGEntities4();
+                tblAlbum album = dbCtx.tblAlbums.FirstOrDefault(a => a.ALB_IDPkey == albumId);
+                tblEnvironmentalCondition condition = dbCtx.tblEnvironmentalConditions.FirstOrDefault(a => a.ENC_IDPkey == conditionid);
+                tblFeature feature = dbCtx.tblFeatures.FirstOrDefault(a => a.FTR_IDPkey == filterId);
+
+                image.tblAlbum = album;
+                image.tblEnvironmentalCondition = condition;
+                image.tblFeature = feature;
+
+                image.IMG_Path = string.Format("Images/Albums/{0}", album.ALB_Name);
+                image.IMG_SensorDataPath = string.Format("Images/Albums/{0}", album.ALB_Name);
+
+                string[] imagaeData = masterimage.FileName.Split('\\');
+                image.IMG_Name = imagaeData[imagaeData.Length - 1];
+
+                if (ImageHelper.IsExists(image))
+                    throw new InvalidOperationException("Image Exists"); 
 
                 log.Info("Saving files started");
-                
-                image.IMG_Path = SaveFile(ddlAlbums, masterimage);
-                image.IMG_SensorDataPath = SaveFile(ddlAlbums, sensordata);
-                image.IMG_MetaDataPath = SaveFile(ddlAlbums, metadata);
+
+                FileHelper.SaveFile(image, masterimage, image.IMG_Name);
+                FileHelper.SaveFile(image, sensordata, image.IMG_Name.Replace("IMG","SensorData").Replace("jpg","txt"));
 
                 log.Info("Saving files completed");
 
-                string filePath = string.Format("~/Images/Albums/{0}", ddlAlbums);
-                string relativePath = string.Format("Images/Albums/{0}/{1}", ddlAlbums, masterimage.FileName);
-                string path = Path.Combine(Server.MapPath(filePath), Path.GetFileName(masterimage.FileName));
-
-
+                 
                 log.Info("Retriving Exif data started");
+                ImageHelper.ExtractMetaData(image); 
 
-                try
-                {
+                log.Info("Saving db data started"); 
+                //Add newStudent entity into DbEntityEntry and mark EntityState to Added
+                dbCtx.Entry(image).State = EntityState.Added;
 
-
-                    ExifTagCollection _exif = new ExifTagCollection(path);
-
-                    foreach (ExifTag tag in _exif)
-                    {
-                        tblMetaType metaType = new tblMetaType();
-                        metaType.MTT_IDPkey = tag.Id; ;
-                        metaType.MTT_Name = tag.FieldName;
-                        tblMetaData meta = new tblMetaData();
-                        meta.MTD_Value = tag.Value.Length > 500 ? "" : tag.Value;
-                        meta.MTT_IDFkey = tag.Id;
-                        meta.tblImage = image;
-                        image.tblMetaDatas.Add(meta);
-                    }
-                    log.Info("Retriving Exif data completed "+ image.tblMetaDatas.Count());
-                }
-                catch (Exception ex)
-                {
-                    log.Error("Error reading exif", ex);
-                }
-
-             
-
-                log.Info("Saving db data started");
-
-
-                //create DBContext object
-                using (var dbCtx = new CUATRGEntities4())
-                {
-
-
-                    try
-                    {
-                        //Add newStudent entity into DbEntityEntry and mark EntityState to Added
-                        dbCtx.Entry(image).State = EntityState.Added;
-
-                        // call SaveChanges method to save new Student into database
-                        dbCtx.SaveChanges();
-                        log.Info("Saving db data completed");
-                    }
-                    catch (Exception ex)
-                    {
-                        log.Error("Error saving data", ex);
-                    }
-                }
-
-             
-
-
-                var viewModel = new AddImageViewModel()
-                {
-                    Albums = imageDB.tblAlbums.ToList(),
-                    Conditions = imageDB.tblEnvironmentalConditions.ToList(),
-                    Features = imageDB.tblFeatures.ToList()
-                };
-
-                log.Info("View generation completed");
-
+                // call SaveChanges method to save new Student into database
+                dbCtx.SaveChanges();
+                log.Info("Saving db data completed"); 
+ 
+                log.Info("View generation completed"); 
 
                 ViewBag.Message = "Successfully uploaded";
-                return View(viewModel);
+              
             }
             catch (Exception ex)
             {
-                ViewBag.Message = "ERROR:" + ex.Message.ToString();
-                return View(new AddImageViewModel());
-            }           
+                log.Error(string.Format("Error uploading image {0}", image.IMG_Name));
+                ViewBag.Message = "ERROR:" + ex.Message.ToString(); 
+            }
+            var viewModel = new AddImageViewModel()
+            {
+                Albums = imageDB.tblAlbums.ToList(),
+                Conditions = imageDB.tblEnvironmentalConditions.ToList(),
+                Features = imageDB.tblFeatures.ToList()
+            };
+            return View(viewModel);
         }
 
 
@@ -195,70 +156,56 @@ namespace CUATRG.Controllers
         public ActionResult AddProcessedImage(string name, string ddlAlbums, string ddlConditions,
                                     string ddlFeatures, HttpPostedFileBase masterimage, HttpPostedFileBase sensordata, HttpPostedFileBase metadata)
         {
+            var image = new tblImage();
+
             try
             {
                 int albumId = -1;
-                if (!int.TryParse(ddlAlbums, out albumId))
-                {
-                    throw new InvalidDataException("Error in album id");
-                }
+                if (!int.TryParse(ddlAlbums, out albumId)) 
+                    throw new InvalidDataException("Error in album id"); 
 
                 int conditionid = -1;
-                if (!int.TryParse(ddlConditions, out conditionid))
-                {
-                    throw new InvalidDataException("Error in condition id");
-                } 
+                if (!int.TryParse(ddlConditions, out conditionid)) 
+                    throw new InvalidDataException("Error in condition id"); 
 
                 int filterId = -1;
-                if (!int.TryParse(ddlFeatures, out filterId))
-                {
-                    throw new InvalidDataException("Error in filter id");
-                }
-                var image = new tblImage();
+                if (!int.TryParse(ddlFeatures, out filterId)) 
+                    throw new InvalidDataException("Error in filter id");  
 
-                //set student name
+                //set image data
                 image.IMG_Name = name;
-                image.ALB_IDFkey = albumId;
-                image.ENC_IDFkey = conditionid;
-                image.FTR_IDFkey = filterId;
-                image.IMG_Path = SaveFile(ddlAlbums, masterimage);
-                image.IMG_SensorDataPath = SaveFile(ddlAlbums, sensordata);
-                image.IMG_MetaDataPath = SaveFile(ddlAlbums, metadata);
+                var dbCtx = new CUATRGEntities4();
+                tblAlbum album = dbCtx.tblAlbums.FirstOrDefault(a => a.ALB_IDPkey == albumId);
+                tblEnvironmentalCondition condition = dbCtx.tblEnvironmentalConditions.FirstOrDefault(a => a.ENC_IDPkey == conditionid);
+                tblFeature feature = dbCtx.tblFeatures.FirstOrDefault(a => a.FTR_IDPkey == filterId);
 
-                string filePath = string.Format("~/Images/Albums/{0}", ddlAlbums);
-                string relativePath = string.Format("Images/Albums/{0}/{1}", ddlAlbums, masterimage.FileName);
-                string path = Path.Combine(Server.MapPath(filePath), Path.GetFileName(masterimage.FileName));
+                image.tblAlbum = album;
+                image.tblEnvironmentalCondition = condition;
+                image.tblFeature = feature;
 
-                ExifTagCollection _exif = new ExifTagCollection(path);
+                string[] imagaeData = masterimage.FileName.Split('\\');
+                image.IMG_Name = imagaeData[imagaeData.Length - 1];
 
-                foreach (ExifTag tag in _exif)
-                {
-                    tblMetaType metaType = new tblMetaType();
-                    metaType.MTT_IDPkey = tag.Id; ;
-                    metaType.MTT_Name = tag.FieldName;
-                    tblMetaData meta = new tblMetaData();
-                    meta.MTD_Value = tag.Value.Length > 500 ? "" : tag.Value;
-                    meta.MTT_IDFkey = tag.Id;
-                    meta.tblImage = image;
-                    image.tblMetaDatas.Add(meta);
-                }
-                //create DBContext object
-                using (var dbCtx = new CUATRGEntities4())
-                {
-                    try
-                    {
-                        //Add newStudent entity into DbEntityEntry and mark EntityState to Added
-                        dbCtx.Entry(image).State = EntityState.Added;
+                image.IMG_Path = string.Format("Images/Albums/{0}", album.ALB_Name);
+                image.IMG_SensorDataPath = string.Format("Images/Albums/{0}", album.ALB_Name);
 
-                        // call SaveChanges method to save new Student into database
-                        dbCtx.SaveChanges();
-                    }
-                    catch (Exception ex)
-                    {
-                        int i = 0;
-                    }
+                if (ImageHelper.IsExists(image)) 
+                    throw new InvalidOperationException("Image Exists"); 
 
-                }
+                FileHelper.SaveFile(image, masterimage , image.IMG_Name);
+                FileHelper.SaveFile(image, sensordata , image.IMG_Name.Replace("IMG", "SensorData").Replace("jpg", "txt"));
+                //image.IMG_MetaDataPath = FileHelper.SaveFile(image, metadata);
+
+               
+                ImageHelper.ExtractMetaData(image);
+
+                 
+                //Add newStudent entity into DbEntityEntry and mark EntityState to Added
+                dbCtx.Entry(image).State = EntityState.Added;
+
+                // call SaveChanges method to save new Student into database
+                dbCtx.SaveChanges();
+                   
 
                 var viewModel = new AddImageViewModel()
                 {
@@ -266,48 +213,15 @@ namespace CUATRG.Controllers
                     Conditions = imageDB.tblEnvironmentalConditions.ToList(),
                     Features = imageDB.tblFeatures.ToList()
                 };
-
-
-
                 ViewBag.Message = "Successfully uploaded";
                 return View(viewModel);
             }
             catch (Exception ex)
             {
+                log.Error(string.Format("Error uploading image {0}", image.IMG_Name));
                 ViewBag.Message = "ERROR:" + ex.Message.ToString();
                 return View(new AddImageViewModel());
             }
         }
-
-        private string  SaveFile(string ddlAlbums, HttpPostedFileBase file)
-        {
-            string filePath = string.Empty;
-            string relativePath = string.Empty;
-            if (file != null && file.ContentLength > 0)
-            {
-                try
-                {
-                    log.Info("Reading sensor data file");
-                    filePath = string.Format("~/Images/Albums/{0}", ddlAlbums);
-                    relativePath = string.Format("Images/Albums/{0}/{1}", ddlAlbums, file.FileName);
-                    string path = Path.Combine(Server.MapPath(filePath), Path.GetFileName(file.FileName));
-                    log.Info(Server.MapPath(filePath));
-                    if (!Directory.Exists(Server.MapPath(filePath)))
-                    {
-                        log.Info("Creating directory");
-                        Directory.CreateDirectory(Server.MapPath(filePath));
-                    }
-                    file.SaveAs(path);
-
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.Message = "ERROR:" + ex.Message.ToString();
-                    throw;
-                }                
-            }
-            return relativePath;
-        }
-
     }
 }

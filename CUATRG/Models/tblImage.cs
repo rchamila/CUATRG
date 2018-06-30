@@ -16,9 +16,9 @@ namespace CUATRG.Models
     {
         public tblImage()
         {
-            this.tblMetaDatas = new HashSet<tblMetaData>();
             this.tblProcessedImages = new HashSet<tblProcessedImage>();
             this.tblSensorDatas = new HashSet<tblSensorData>();
+            this.tblMetaDatas = new HashSet<tblMetaData>();
         }
     
         public int IMG_IDPkey { get; set; }
@@ -33,8 +33,8 @@ namespace CUATRG.Models
         public virtual tblAlbum tblAlbum { get; set; }
         public virtual tblEnvironmentalCondition tblEnvironmentalCondition { get; set; }
         public virtual tblFeature tblFeature { get; set; }
-        public virtual ICollection<tblMetaData> tblMetaDatas { get; set; }
         public virtual ICollection<tblProcessedImage> tblProcessedImages { get; set; }
         public virtual ICollection<tblSensorData> tblSensorDatas { get; set; }
+        public virtual ICollection<tblMetaData> tblMetaDatas { get; set; }
     }
 }

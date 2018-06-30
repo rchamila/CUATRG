@@ -19,7 +19,7 @@ namespace CUATRG.Models
         public int SDT_IDFkey { get; set; }
         public decimal SDT_Value { get; set; }
     
-        public virtual tblImage tblImage { get; set; }
         public virtual tblSensorDataType tblSensorDataType { get; set; }
+        public virtual tblImage tblImage { get; set; }
     }
 }

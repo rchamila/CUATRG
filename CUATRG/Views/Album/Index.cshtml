@@ -21,7 +21,7 @@
             
             if (@album.tblImages != null && @album.tblImages.Count() > 0)
             {
-                link = System.Configuration.ConfigurationManager.AppSettings["domain"] + @album.tblImages.First().IMG_Path;
+                link = System.Configuration.ConfigurationManager.AppSettings["domain"] + @album.tblImages.First().IMG_Path + "//" + album.tblImages.First().IMG_Name;
             }
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">

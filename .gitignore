@@ -1,0 +1,15 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/CUATRG/v15
+/CUATRG/obj/Debug
+/CUATRG.Test/bin/Debug
+/CUATRG.Test/obj/Debug
+/packages/log4net.2.0.8
+/packages/MSTest.TestAdapter.1.1.18
+/packages/MSTest.TestFramework.1.1.18/lib
+/ImageUploader/bin/Debug
+/ImageUploader/obj/Debug
+/packages/MSTest.TestFramework.1.1.18
+/.vs

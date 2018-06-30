@@ -14,7 +14,7 @@ using CUATRG.Models;
 namespace CUATRG.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
+    //[InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //
