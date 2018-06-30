@@ -11,7 +11,7 @@ namespace CUATRG.Test
         [TestMethod]
         public async System.Threading.Tasks.Task TestMethod1Async()
         {
-            using (var client = new HttpClient())
+            using (var client = new HttpClient())  
             {
                 client.BaseAddress = new Uri("http://localhost:62309/");
                 var content = new FormUrlEncodedContent(new[]
