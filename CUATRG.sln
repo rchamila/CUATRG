@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageUploader", "ImageUploa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CUATRG.Test", "CUATRG.Test\CUATRG.Test.csproj", "{F5170F8C-4E6D-45FC-A7C6-5D97E183E775}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ImageProcessing", "ImageProcessing\ImageProcessing.pyproj", "{4F8135B4-2D2A-4DFE-964C-2C07BE72FE1D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,8 @@ Global
 		{F5170F8C-4E6D-45FC-A7C6-5D97E183E775}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5170F8C-4E6D-45FC-A7C6-5D97E183E775}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5170F8C-4E6D-45FC-A7C6-5D97E183E775}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F8135B4-2D2A-4DFE-964C-2C07BE72FE1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F8135B4-2D2A-4DFE-964C-2C07BE72FE1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

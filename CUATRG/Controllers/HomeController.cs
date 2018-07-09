@@ -17,6 +17,7 @@ namespace CUATRG.Controllers
         {
             ViewBag.Message = "Home";
             log.Info("Test");
+
             return View();
         }
 

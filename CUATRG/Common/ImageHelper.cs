@@ -2,6 +2,8 @@
 using LevDan.Exif;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -17,6 +19,16 @@ namespace CUATRG.Common
                                                     && i.ALB_IDFkey == image.tblAlbum.ALB_IDPkey
                                                     && i.FTR_IDFkey == image.tblFeature.FTR_IDPkey
                                                     && i.ENC_IDFkey == image.tblEnvironmentalCondition.ENC_IDPkey);
+
+
+        }
+
+        public static bool IsProcessedImageExists(tblProcessedImage image)
+        {
+            var dbCtx = new CUATRGEntities4();
+            return dbCtx.tblProcessedImages.Any<tblProcessedImage>(i => i.PIM_Name == image.PIM_Name
+                                                    && i.FLT_IDFkey == image.FLT_IDFkey
+                                                    && i.IMG_IDFkey == image.IMG_IDFkey);
 
 
         }
@@ -47,6 +59,33 @@ namespace CUATRG.Common
                 meta.tblImage = image;
                 image.tblMetaDatas.Add(meta);
             }
+        }
+
+        public static Bitmap MakeGrayscale(Bitmap original)
+        {
+            //make an empty bitmap the same size as original
+            Bitmap newBitmap = new Bitmap(original.Width, original.Height);
+
+            for (int i = 0; i < original.Width; i++)
+            {
+                for (int j = 0; j < original.Height; j++)
+                {
+                    //get the pixel from the original image
+                    Color originalColor = original.GetPixel(i, j);
+
+                    //create the grayscale version of the pixel
+                    int grayScale = (int)((originalColor.R * .3) + (originalColor.G * .59)
+                        + (originalColor.B * .11));
+
+                    //create the color object
+                    Color newColor = Color.FromArgb(grayScale, grayScale, grayScale);
+
+                    //set the new image's pixel to the grayscale version
+                    newBitmap.SetPixel(i, j, newColor);
+                }
+            }
+
+            return newBitmap;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace ImageUploader
 {
     class Program
     {
-        private static string baseDir = @"D:\Temp Photos\Upload";
+        private static string baseDir = @"D:\Temp\Upload\";
         private static string api = @"http://localhost:55892/api";
         private static log4net.ILog log = log4net.LogManager.GetLogger
               (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -21,10 +21,19 @@ namespace ImageUploader
 
             log.Warn("Job started");
             //Task.Run(() => MainAsync());
-            List<string> files = DirSearch(baseDir);
+            List<string> files = DirSearch(baseDir + "Albums");
             foreach(string file in files)
             {
-                Task.Run(() => MainAsync(file));
+                //Task.Run(() => MainAsync(file));
+                //MainAsync(file);
+            }
+
+
+            List<string> processedfiles = DirSearch(baseDir + "Processed");
+            foreach (string file in processedfiles)
+            {
+                //Task.Run(() => MainAsync(file));
+                ProcessedAsync(file);
             }
             Console.ReadLine();
         }
@@ -94,9 +103,10 @@ namespace ImageUploader
                         FileName = dataInfo.Name
                     };
                     content.Add(sensordata, "sensordata");
-                  
 
-                    var result = client.PostAsync(string.Format("{0}/Admin/AddImage?ddlAlbums={1}&ddlConditions={2}&ddlFeatures={3}",api, param[0], param[1], param[2]), content);
+                    var url = string.Format("{0}/Admin/AddImage?ddlAlbums={1}&ddlConditions={2}&ddlFeatures={3}", api, param[4], param[5], "Normal");
+                    var result = client.PostAsync(url, content);
+                    //var result = client(string.Format("{0}/Admin/AddImage?ddlAlbums={1}&ddlConditions={2}&ddlFeatures={3}", api, param[0], param[1], param[2]), content);
                     string resultContent = await result.Result.Content.ReadAsStringAsync();
 
                     Console.WriteLine("{0} - Image uploading completed . Result {1}", imageName, resultContent);
@@ -109,6 +119,52 @@ namespace ImageUploader
                 }
             }
             catch(Exception ex)
+            {
+                Console.WriteLine(" {0} - Error uploading image. Exception - {1}", filePath, ex.Message);
+                log.Error(ex);
+            }
+        }
+
+        static async Task ProcessedAsync(string filePath)
+        {
+            string imageName;
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var content = new MultipartFormDataContent();
+
+                    FileInfo imgInfo = new FileInfo(filePath);
+
+                    imageName = imgInfo.Name;
+
+                    Console.WriteLine("{0} - Image uploading started", imageName);
+
+                    string[] param = filePath.Replace(baseDir + "\\", "").Split('\\');
+                    var processedimage = new ByteArrayContent(System.IO.File.ReadAllBytes(filePath));
+
+                    processedimage.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+                    {
+                        FileName = imgInfo.Name
+                    };
+
+                    content.Add(processedimage, "processedimage");
+
+                   
+                    var result = client.PostAsync(string.Format("{0}/Admin/AddProcessedImage?filtername={1}&name={2}", api, param[4], param[5]), content);
+                    //var result = client(string.Format("{0}/Admin/AddImage?ddlAlbums={1}&ddlConditions={2}&ddlFeatures={3}", api, param[0], param[1], param[2]), content);
+                    string resultContent = await result.Result.Content.ReadAsStringAsync();
+
+                    Console.WriteLine("{0} - Image uploading completed . Result {1}", imageName, resultContent);
+
+                    if (string.IsNullOrWhiteSpace(resultContent))
+                    {
+                        MoveFile(filePath);
+                        Console.WriteLine(" {0} - Image moved", filePath);
+                    }
+                }
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(" {0} - Error uploading image. Exception - {1}", filePath, ex.Message);
                 log.Error(ex);
