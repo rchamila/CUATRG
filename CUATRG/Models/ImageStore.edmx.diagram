@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f78083b519e347e289b0ebd920581221" Name="Diagram1">
+      <Diagram DiagramId="f78083b519e347e289b0ebd920581221" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="CUATRGEntities2.tblAlbum" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CUATRGEntities2.tblColorMode" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CUATRGEntities2.tblEnvironmentalCondition" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />

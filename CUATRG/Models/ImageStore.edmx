@@ -94,6 +94,7 @@
           </Key>
           <Property Name="FLT_IDPkey" Type="int" Nullable="false" />
           <Property Name="FLT_Name" Type="nchar" MaxLength="10" />
+          <Property Name="FLT_Description" Type="nchar" Nullable="true" />
         </EntityType>
         <EntityType Name="tblImages">
           <Key>
@@ -370,6 +371,7 @@
           <Property Name="FLT_IDPkey" Type="Int32" Nullable="false" />
           <Property Name="FLT_Name" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
           <NavigationProperty Name="tblProcessedImages" Relationship="CUATRGEntities2.FK_tblProcessedImages_tblFilters" FromRole="tblFilters" ToRole="tblProcessedImages" />
+          <Property Name="FLT_Description" Type="String" Nullable="true" />
         </EntityType>
         <EntityType Name="tblProcessedImage">
           <Key>
@@ -608,6 +610,7 @@
               <MappingFragment StoreEntitySet="tblFilters">
                 <ScalarProperty Name="FLT_IDPkey" ColumnName="FLT_IDPkey" />
                 <ScalarProperty Name="FLT_Name" ColumnName="FLT_Name" />
+                <ScalarProperty Name="FLT_Description" ColumnName="FLT_Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

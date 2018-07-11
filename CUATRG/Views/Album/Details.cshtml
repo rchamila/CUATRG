@@ -85,7 +85,7 @@
                                             }
 
                                         }
-                                        <span style="margin-left: 5px;">Original</span>
+                                        <span style="margin-left: 5px;">RGB</span>
                                     </div>
                                 }
                                 else if (remainder == 0)
@@ -102,7 +102,7 @@
                                                     @Html.RadioButtonFor(model => model.ProcessedImage, processed.PIM_IDPkey, new { @id = "Filter" + processed.PIM_IDPkey, @onclick = onClick });
                                                 }
                                             }
-                                            <span style="margin-left: 5px;">@processed.tblFilter.FLT_Name</span>
+                                            <span style="margin-left: 5px;">@processed.tblFilter.FLT_Description</span>
                                         </div>
                                     }
                                     else
@@ -118,7 +118,7 @@
                                                     @Html.RadioButtonFor(model => model.ProcessedImage, processed.PIM_IDPkey, new { @id = "Filter" + processed.PIM_IDPkey, @onclick = onClick });
                                                 }
                                             }
-                                            <span style="margin-left: 5px;">@processed.tblFilter.FLT_Name</span>
+                                            <span style="margin-left: 5px;">@processed.tblFilter.FLT_Description</span>
                                         </div>
                                     @:</div>
                                 }

@@ -1,12 +1,11 @@
 ﻿using CUATRG.Common;
 using CUATRG.Models;
 using CUATRG.ViewModels;
-using FileHelpers;
-using LevDan.Exif;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -22,7 +21,14 @@ namespace CUATRG.Controllers
         //
         // GET: /Admin/
 
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+             
+        //    return View(viewModel);
+        //}
+
+        [Authorize]
+        public ActionResult MasterIndex()
         {
             var viewModel = new ListImageViewModel()
             {
@@ -30,7 +36,7 @@ namespace CUATRG.Controllers
             };
             return View(viewModel);
         }
-
+        [Authorize]
         public ActionResult ProcessedIndex()
         {
             var viewModel = new ListImageViewModel()
@@ -39,7 +45,7 @@ namespace CUATRG.Controllers
             };
             return View(viewModel);
         }
-
+        [Authorize]
         public ActionResult AddImage()
         {
             var viewModel = new AddImageViewModel()
@@ -53,8 +59,9 @@ namespace CUATRG.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult AddImage(string name, string ddlAlbums, string ddlConditions,
-                                    string ddlFeatures, HttpPostedFileBase masterimage, HttpPostedFileBase sensordata, HttpPostedFileBase metadata)
+                                    string ddlFeatures, HttpPostedFileBase masterimage, HttpPostedFileBase sensordata)
         {
             var image = new tblImage();
 
@@ -130,7 +137,7 @@ namespace CUATRG.Controllers
             return View(viewModel);
         }
 
-
+        [Authorize]
         public ActionResult AddProcessedImage()
         {
             var viewModel = new AddProcessedImageViewModel()
@@ -144,6 +151,7 @@ namespace CUATRG.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult GetImagesByAlbumId(int albumid)
         {
             List<tblImage> objcity = new List<tblImage>();
@@ -153,8 +161,9 @@ namespace CUATRG.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult AddProcessedImage(string name, string ddlAlbums, string ddlConditions,
-                                    string ddlFeatures, HttpPostedFileBase masterimage, HttpPostedFileBase sensordata, HttpPostedFileBase metadata)
+                                    string ddlFeatures, HttpPostedFileBase masterimage, HttpPostedFileBase sensordata)
         {
             var image = new tblImage();
 
@@ -199,7 +208,6 @@ namespace CUATRG.Controllers
                
                 ImageHelper.ExtractMetaData(image);
 
-                 
                 //Add newStudent entity into DbEntityEntry and mark EntityState to Added
                 dbCtx.Entry(image).State = EntityState.Added;
 
@@ -222,6 +230,27 @@ namespace CUATRG.Controllers
                 ViewBag.Message = "ERROR:" + ex.Message.ToString();
                 return View(new AddImageViewModel());
             }
+        }
+
+        [Authorize]
+        public ActionResult CreateZipIndex()
+        {
+           return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult CreateZip()
+        {
+            string startPath = Server.MapPath("../") + @"Images\Albums";
+            string zipPath = startPath + @"\Albums.zip";
+             
+            ZipFile.CreateFromDirectory(startPath, zipPath);
+
+            //ZipFile.ExtractToDirectory(zipPath, extractPath);
+
+            return Content("OK");
+             
         }
     }
 }

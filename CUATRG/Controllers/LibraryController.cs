@@ -33,7 +33,6 @@ namespace CUATRG.Controllers
         //public ActionResult Search()
         {
            
-
             List<tblImage> results = new List<tblImage>();
             
             int albumId = -1;

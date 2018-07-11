@@ -35,14 +35,19 @@ namespace CUATRG.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            if (ModelState.IsValid &&  IsValid(model.UserName, model.Password))
             {
-                return RedirectToLocal(returnUrl);
-            }
-
+                FormsAuthentication.SetAuthCookie(model.UserName, false);
+                return RedirectToAction("MasterIndex", "Admin");
+            }  
             // If we got this far, something failed, redisplay form
             ModelState.AddModelError("", "The user name or password provided is incorrect.");
             return View(model);
+        }
+
+        private bool IsValid(string userName, string password)
+        {
+            return userName == "chamila" && password == "chamila";
         }
 
         //

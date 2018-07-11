@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "CreateZip";
+    Layout = "~/Views/Shared/_AdminPartial.cshtml";
+}
+
+  
+
+<div class="container-fluid res-lst">
+    <div class="twrp_dv">
+        <div class="page-header my_pg_hd">
+            <h1>Create Zip<small></small></h1>
+        </div>
+        @using (Html.BeginForm("CreateZip", "Admin", FormMethod.Post, new { id = "calcForm", @class = "form-horizontal", enctype = "multipart/form-data" }))
+        {
+            <div class="form-group">
+                <div class="bg-danger col-sm-7"></div>
+                @ViewBag.Message
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-5">
+                    <button type="submit" class="btn btn-primary">Generate Zip</button>
+                    <button type="submit" class="btn btn-primary">Cancel</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

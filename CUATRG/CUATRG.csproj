@@ -54,6 +54,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -303,7 +304,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Images\Albums\1\stage2_plan_opt.png" />
     <Content Include="Images\default.png" />
     <Content Include="Libraries\FileHelpers.dll" />
     <Content Include="Scripts\bootstrap.js" />
@@ -352,6 +352,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Home\Albums.cshtml" />
+    <Content Include="Views\Admin\CreateZipIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -378,7 +379,7 @@
     <Content Include="Views\Shared\_AdminPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\MasterIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\ProcessedIndex.cshtml" />
@@ -388,25 +389,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\Albums\10\" />
-    <Folder Include="Images\Albums\11\" />
-    <Folder Include="Images\Albums\12\" />
-    <Folder Include="Images\Albums\13\" />
-    <Folder Include="Images\Albums\14\" />
-    <Folder Include="Images\Albums\15\" />
-    <Folder Include="Images\Albums\16\" />
-    <Folder Include="Images\Albums\17\" />
-    <Folder Include="Images\Albums\18\" />
-    <Folder Include="Images\Albums\19\" />
-    <Folder Include="Images\Albums\20\" />
-    <Folder Include="Images\Albums\2\" />
-    <Folder Include="Images\Albums\3\" />
-    <Folder Include="Images\Albums\4\" />
-    <Folder Include="Images\Albums\5\" />
-    <Folder Include="Images\Albums\6\" />
-    <Folder Include="Images\Albums\7\" />
-    <Folder Include="Images\Albums\8\" />
-    <Folder Include="Images\Albums\9\" />
+    <Folder Include="Images\Albums\" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Models\ImageStore.edmx">

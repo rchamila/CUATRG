@@ -21,6 +21,7 @@ namespace CUATRG.Models
     
         public int FLT_IDPkey { get; set; }
         public string FLT_Name { get; set; }
+        public string FLT_Description { get; set; }
     
         public virtual ICollection<tblProcessedImage> tblProcessedImages { get; set; }
     }
