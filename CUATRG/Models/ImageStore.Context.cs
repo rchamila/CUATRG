@@ -36,5 +36,7 @@ namespace CUATRG.Models
         public DbSet<tblImage> tblImages { get; set; }
         public DbSet<tblMetaType> tblMetaTypes { get; set; }
         public DbSet<tblMetaData> tblMetaDatas { get; set; }
+        public DbSet<tblFile> tblFiles { get; set; }
+        public DbSet<Log> Logs { get; set; }
     }
 }

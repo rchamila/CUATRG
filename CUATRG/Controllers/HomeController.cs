@@ -28,10 +28,9 @@ namespace CUATRG.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Contact(string message)
         {
-            ViewBag.Message = "Contact page.";
-
+            ViewBag.Message = message;
             return View();
         }
 
@@ -43,19 +42,33 @@ namespace CUATRG.Controllers
         }
 
         [HttpPost]
-        public void ContactUs(string name, string email, string message)
+        public ActionResult ContactUs(string name, string email, string message)
                                     
         {
-            var client = new SmtpClient("smtp.gmail.com", 587)
+            var msg = "";
+            try
             {
-                Credentials = new NetworkCredential("rchamila@gmail.com", "B3mmu11egedar@"),
-                EnableSsl = true
-            };
-            StringBuilder builder = new StringBuilder();
-            builder.AppendLine("Name :" + name);
-            builder.AppendLine("Message :" + message);
+                var client = new SmtpClient("smtp.gmail.com", 587)
+                {
+                    Credentials = new NetworkCredential("rchamila@gmail.com", "B3mmu11egedar@"),
+                    EnableSsl = true
+                };
+                StringBuilder builder = new StringBuilder();
+                builder.AppendLine("Email :" + email);
+                builder.AppendLine("Name :" + name);
+                builder.AppendLine("Message :" + message);
 
-            client.Send(email, "rchamila@gmail.com", "Message Received", builder.ToString());
+                log.InfoFormat("Contact us : " + builder.ToString());
+
+                client.Send(email, "rchamila@gmail.com", "Message Received", builder.ToString());
+
+                msg = "Thank you for submitting your inquery. We will contact you shortly";
+            }
+            catch(Exception ex)
+            {
+                msg = "Error contacting CUATRG team. Please try again."; 
+            }
+            return RedirectToAction("Contact", new { message = msg });
         }
 
         public ActionResult Resources()

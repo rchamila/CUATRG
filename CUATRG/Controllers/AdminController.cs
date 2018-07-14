@@ -7,6 +7,7 @@ using System.Data;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -52,7 +53,7 @@ namespace CUATRG.Controllers
             {
                 Albums = imageDB.tblAlbums.ToList(),
                 Conditions = imageDB.tblEnvironmentalConditions.ToList(),
-                Features = imageDB.tblFeatures.ToList()
+                Features = imageDB.tblFeatures.ToList() 
             };
 
             return View(viewModel);
@@ -144,7 +145,8 @@ namespace CUATRG.Controllers
             {
                 Albums = imageDB.tblAlbums.ToList(),
                 Conditions = imageDB.tblEnvironmentalConditions.ToList(),
-                Features = imageDB.tblFeatures.ToList()
+                Features = imageDB.tblFeatures.ToList(),
+                Filters = imageDB.tblFilters.ToList()
             };
 
             return View(viewModel);
@@ -233,24 +235,42 @@ namespace CUATRG.Controllers
         }
 
         [Authorize]
-        public ActionResult CreateZipIndex()
+        public ActionResult CreateZipIndex(string message)
         {
-           return View();
+            var dbCtx = new CUATRGEntities4();
+            var files = dbCtx.tblFiles.OrderByDescending( f => f.StartStamp).Take(10);
+            var model = new CreateZipViewModel
+            {
+                Message = !string.IsNullOrWhiteSpace(message) ? message : 
+                            files.FirstOrDefault() == null ? " " :
+                                files.FirstOrDefault().EndStamp.HasValue ? " " :
+                                    (DateTime.Now - files.FirstOrDefault().StartStamp) > new TimeSpan(0, 10, 0) ? " " : "Zipping the images",
+                Files = files.ToList()
+            };
+            return View(model);
         }
 
         [Authorize]
         [HttpPost]
         public ActionResult CreateZip()
         {
-            string startPath = Server.MapPath("../") + @"Images\Albums";
-            string zipPath = startPath + @"\Albums.zip";
-             
-            ZipFile.CreateFromDirectory(startPath, zipPath);
+            //string startPath = Server.MapPath("../") + @"Images\Albums";
+            string startPath = "D:\\Software";
+            string zipPath = "D:\\Temp\\" +  DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".zip";
 
-            //ZipFile.ExtractToDirectory(zipPath, extractPath);
+            var dbCtx = new CUATRGEntities4();
+            var file = dbCtx.tblFiles.Create();
+            file.Status = 0;
+            var paths = zipPath.Split('\\');
+            file.FileName = paths[paths.Length - 1];
+            file.StartStamp = DateTime.Now;
+            dbCtx.Entry(file).State = EntityState.Added;
 
-            return Content("OK");
-             
+            dbCtx.SaveChanges();
+            //FileHelper.HandleZipAsync(startPath, zipPath);
+            Task.Run(() => FileHelper.HandleZipAsync(startPath, zipPath, file));
+            //ZipFile.ExtractToDirectory(zipPath, extractPath); 
+            return RedirectToAction("CreateZipIndex", new { message = "Zipping started.." });
         }
     }
 }

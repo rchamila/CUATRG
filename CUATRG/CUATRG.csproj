@@ -203,6 +203,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ImageStore.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Log.cs">
+      <DependentUpon>ImageStore.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SensorData.cs" />
     <Compile Include="Models\tblAlbum.cs">
       <DependentUpon>ImageStore.tt</DependentUpon>
@@ -214,6 +217,9 @@
       <DependentUpon>ImageStore.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblFeature.cs">
+      <DependentUpon>ImageStore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblFile.cs">
       <DependentUpon>ImageStore.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblFilter.cs">
@@ -241,6 +247,7 @@
     <Compile Include="ViewModels\AddImageViewModel.cs" />
     <Compile Include="ViewModels\AddProcessedImageViewModel.cs" />
     <Compile Include="ViewModels\AlbumIndexViewModel.cs" />
+    <Compile Include="ViewModels\CreateZipViewModel.cs" />
     <Compile Include="ViewModels\ImageDetailsViewModel.cs" />
     <Compile Include="ViewModels\LibraryViewModel.cs" />
     <Compile Include="ViewModels\ListImageViewModel.cs" />

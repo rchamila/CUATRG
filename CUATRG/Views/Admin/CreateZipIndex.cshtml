@@ -1,9 +1,10 @@
-﻿@{
+﻿@model CUATRG.ViewModels.CreateZipViewModel
+@{
     ViewBag.Title = "CreateZip";
     Layout = "~/Views/Shared/_AdminPartial.cshtml";
 }
 
-  
+
 
 <div class="container-fluid res-lst">
     <div class="twrp_dv">
@@ -12,17 +13,40 @@
         </div>
         @using (Html.BeginForm("CreateZip", "Admin", FormMethod.Post, new { id = "calcForm", @class = "form-horizontal", enctype = "multipart/form-data" }))
         {
-            <div class="form-group">
-                <div class="bg-danger col-sm-7"></div>
-                @ViewBag.Message
-            </div>
 
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-5">
-                    <button type="submit" class="btn btn-primary">Generate Zip</button>
-                    <button type="submit" class="btn btn-primary">Cancel</button>
+            <div  class="row">
+                
+                    <div class="col-sm-1">
+                        <button type="submit" class="btn btn-primary">Generate Zip</button>
+                    </div> 
+                    <div class="col-sm-2"> 
+                    @Model.Message
+                </div>
+                <div class="col-md-9"> 
                 </div>
             </div>
         }
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>File Name</th>
+                    <th>Start Stamp </th>
+                    <th>End Stamp</th>
+                </tr>
+            </thead>
+
+            @foreach (CUATRG.Models.tblFile file in Model.Files)
+            {
+                <tr>
+                    <td>@file.Id</td>
+                    <td>@file.FileName</td>
+                    <td>@file.StartStamp</td>
+                    <td>@file.EndStamp</td>
+                </tr>
+            }
+
+        </table>
     </div>
 </div>

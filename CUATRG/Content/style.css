@@ -132,3 +132,8 @@ vertical-align: middle;
 .btn-block{
     font-size:12px !important
 }
+
+.valign-center {
+     
+    vertical-align: middle !important; 
+}

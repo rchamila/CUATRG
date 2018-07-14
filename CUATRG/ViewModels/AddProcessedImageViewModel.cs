@@ -11,7 +11,7 @@ namespace CUATRG.ViewModels
         public tblImage Image { get; set; }
         public List<tblAlbum> Albums { get; set; }
         public List<tblEnvironmentalCondition> Conditions { get; set; }
-       
+        public List<tblFilter> Filters { get; set; }
         public List<tblFeature> Features { get; set; }
         public tblProcessedImage ProcessedImage { get; set; }
     }

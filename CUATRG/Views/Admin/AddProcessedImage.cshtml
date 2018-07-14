@@ -18,7 +18,7 @@
             cache: false,
             type: "POST",
             success: function (data) {
-                var markup = "<option value='0'>Select Image</option>";
+                var markup = "<option value='0'>-- Select Image --</option>";
                 for (var x = 0; x < data.length; x++) {
                     markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
                 }
@@ -47,9 +47,9 @@
             </div>
             <div class="form-group">
                 @*<label class="col-sm-2 control-label">Image Name</label>
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control" name="name" value="">
-                    </div>*@
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="name" value="">
+                </div>*@
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Location</label>
@@ -68,9 +68,12 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">Master Image</label>
                 <div class="col-sm-5">
-                    <select id="ddlImage" name="ddlImage" class="form-control" />
+                    <select id="ddlImage" name="ddlImage" class="form-control">
+                        <option>-- Select Image --</option>
+                    </select>
                 </div>
             </div>
+
             <div class="form-group">
                 <label class="col-sm-2 control-label">Environmental Conditions</label>
                 <div class="col-sm-5">
@@ -84,6 +87,7 @@
                                                 new { @class = "form-control" })
                 </div>
             </div>
+
             <div class="form-group">
                 <label class="col-sm-2 control-label">Feature</label>
                 <div class="col-sm-5">
@@ -94,10 +98,36 @@
                                                     "Text"
                                                 ),
                                                  "-- Select Feature --",
-                                                new { @class = "form-control" })
+                                                new { @class = "form-control" , @Id = "ddlFeatures" })
                 </div>
             </div>
 
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Feature</label>
+                <div class="col-sm-5">
+                    @Html.DropDownList("ddlFilters",
+                                                new SelectList(
+                                                    Model.Filters.Select(x => new { Value = x.FLT_IDPkey, Text = x.FLT_Name }),
+                                                    "Value",
+                                                    "Text"
+                                                ),
+                                                 "-- Select Feature --",
+                                                new { @class = "form-control" , @Id = "ddlFilters" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Image</label>
+                <div class="col-sm-5">
+                    <input id="master_image" type="file" accept="image/*" name="masterimage">
+                    <input id="master_image_nm" type="hidden" name="image" value="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Sensor Data</label>
+                <div class="col-sm-5">
+                    <input type="file" name="sensordata">
+                </div>
+            </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-5">
                     <button type="submit" class="btn btn-primary">Save</button>

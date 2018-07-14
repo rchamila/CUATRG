@@ -1,8 +1,11 @@
 ﻿using CUATRG.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace CUATRG.Common
@@ -27,6 +30,16 @@ namespace CUATRG.Common
                 file.SaveAs(path);
 
             }
+        }
+
+        public static void HandleZipAsync(string startPath, string zipPath, tblFile file)
+        { 
+            //Task.Run(() => ZipFile.CreateFromDirectory(startPath, zipPath));
+            ZipFile.CreateFromDirectory(startPath, zipPath);
+            var dbCtx = new CUATRGEntities4();
+            file.EndStamp = DateTime.Now;
+            dbCtx.SaveChanges();
+
         }
     }
 }

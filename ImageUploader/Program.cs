@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CUATRG.Common;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace ImageUploader
             foreach(string file in files)
             {
                 //Task.Run(() => MainAsync(file));
-                //MainAsync(file);
+                MainAsync(file);
             }
 
 
@@ -95,14 +96,23 @@ namespace ImageUploader
                     content.Add(masterimage, "masterimage");
 
                     string sensorDataFilePath = filePath.Replace("IMG", "SensorData").Replace("jpg","txt");
-                    FileInfo dataInfo = new FileInfo(sensorDataFilePath);
+                    FileInfo sensordataInfo = new FileInfo(sensorDataFilePath);
                     var sensordata = new ByteArrayContent(System.IO.File.ReadAllBytes(sensorDataFilePath));
 
                     sensordata.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
                     {
-                        FileName = dataInfo.Name
+                        FileName = sensordataInfo.Name
                     };
                     content.Add(sensordata, "sensordata");
+
+                    var metaData = new ByteArrayContent(ImageHelper.GetMetaDataByteStream(filePath));
+                    
+                    metaData.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+                    {
+                        FileName = imageName.Replace("IMG", "MetaData").Replace("jpg", "txt")
+                    };
+                    content.Add(metaData, "metadata");
+
 
                     var url = string.Format("{0}/Admin/AddImage?ddlAlbums={1}&ddlConditions={2}&ddlFeatures={3}", api, param[4], param[5], "Normal");
                     var result = client.PostAsync(url, content);

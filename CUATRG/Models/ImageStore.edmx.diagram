@@ -26,6 +26,8 @@
         <EntityTypeShape EntityType="CUATRGEntities2.tblMetaData" Width="1.5" PointX="11.230325549482519" PointY="18.512566053547229" />
         <AssociationConnector Association="CUATRGEntities2.FK_tblMetaData_tblImages" />
         <AssociationConnector Association="CUATRGEntities2.FK_tblMetaData_tblMetaType" />
+        <EntityTypeShape EntityType="CUATRGEntities2.tblFile" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="CUATRGEntities2.Log" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

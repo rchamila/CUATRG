@@ -52,5 +52,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CUATRG\CUATRG.csproj">
+      <Project>{5AB0D543-CE90-4CE0-A845-3755E8E83096}</Project>
+      <Name>CUATRG</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

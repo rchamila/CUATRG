@@ -15,7 +15,7 @@
         </ol>
         <div class="container">
 
-            <h1>Library Search</h1>
+            <h1>Image Search</h1>
             <br />
             <div class="col-md-6">
                 <div class="col-md-4">
@@ -105,35 +105,34 @@
         <br />
         if (Model.Images != null && Model.Images.Count > 0)
             {
-                <table class="table table-striped">
-                    <tr>
-                       
-                        <th>Album</th>
-                         <th>Name</th>
-                     
-                        <th>Condition</th>
-                        <th>Feature</th>
-                        <th>View</th>
-                    </tr>
-
-                    @foreach (CUATRG.Models.tblImage image in Model.Images)
-                    {
-                        <tr>
-                            <td>@image.tblAlbum.ALB_Name</td>
-                               <td>@image.IMG_Name</td>
-                          
-                            <td>@image.tblEnvironmentalCondition.ENC_Name</td>
-                            <td>@image.tblFeature.FTR_Name</td>
-                            <td> <a title="View Image" class="my_act_btn" href="@Url.Action("Details", "Album", new { albumId = Html.Encode(image.ALB_IDFkey), imageId = Html.Encode(image.IMG_IDPkey) })">
+        <table class="table table-striped">
+            <tr>
+                <th>Image</th>
+                <th>Album</th>
+                <th>Condition</th>
+                <th>Feature</th>
+                <th>View</th>
+            </tr>
+            
+            @foreach (CUATRG.Models.tblImage image in Model.Images)
+            {
+                <tr class="align-middle">
+                    <td><img style="height:64px;width:64px" src="@Url.Content(System.Configuration.ConfigurationManager.AppSettings["domain"] + image.IMG_Path + "//" + image.IMG_Name)" alt="Image" /></td>
+                    <td class="valign-center">@image.tblAlbum.ALB_Name</td>
+                    <td class="valign-center">@image.tblEnvironmentalCondition.ENC_Name</td>
+                    <td class="valign-center">@image.tblFeature.FTR_Name</td>
+                    <td class="valign-center">
+                        <a title="View Image" class="my_act_btn" href="@Url.Action("Details", "Album", new { albumId = Html.Encode(image.ALB_IDFkey), imageId = Html.Encode(image.IMG_IDPkey) })">
                             <button type="button" class="btn btn-primary btn-xs">
-                                <span class="glyphicon "></span> Show
+                                <span class="glyphicon "></span> View
                             </button>
-                        </a></td>
-                        </tr>
-                    }
+                        </a>
+                    </td>
+                </tr>
+            }
 
 
-                </table>
+        </table>
             }
     }
 </div>

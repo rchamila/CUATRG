@@ -77,7 +77,11 @@ namespace CUATRG.Api
                         else if (fileName.Contains("Sensor"))
                         {
                             image.IMG_SensorDataPath = relativePath;
-                        } 
+                        }
+                        else if (fileName.Contains("meta"))
+                        {
+                            image.IMG_MetaDataPath = relativePath;
+                        }
 
                         if (ImageHelper.IsExists(image))
                             throw new InvalidOperationException("Image Exists");
@@ -94,8 +98,6 @@ namespace CUATRG.Api
                         var uploadedFile = files[file];
 
                         uploadedFile.SaveAs(filePath);
-
-                       
                     }
                 }
 
