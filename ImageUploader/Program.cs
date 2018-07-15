@@ -95,7 +95,7 @@ namespace ImageUploader
 
                     content.Add(masterimage, "masterimage");
 
-                    string sensorDataFilePath = filePath.Replace("IMG", "SensorData").Replace("jpg","txt");
+                    string sensorDataFilePath = filePath.Replace("Image", "SensorData").Replace("jpg","txt").Replace("JPG", "txt");
                     FileInfo sensordataInfo = new FileInfo(sensorDataFilePath);
                     var sensordata = new ByteArrayContent(System.IO.File.ReadAllBytes(sensorDataFilePath));
 
@@ -109,23 +109,22 @@ namespace ImageUploader
                     
                     metaData.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
                     {
-                        FileName = imageName.Replace("IMG", "MetaData").Replace("jpg", "txt")
+                        FileName = imageName.Replace("Image", "MetaData").Replace("jpg", "txt")
                     };
                     content.Add(metaData, "metadata");
 
 
                     var url = string.Format("{0}/Admin/AddImage?ddlAlbums={1}&ddlConditions={2}&ddlFeatures={3}", api, param[4], param[5], "Normal");
                     var result = client.PostAsync(url, content);
-                    //var result = client(string.Format("{0}/Admin/AddImage?ddlAlbums={1}&ddlConditions={2}&ddlFeatures={3}", api, param[0], param[1], param[2]), content);
-                    string resultContent = await result.Result.Content.ReadAsStringAsync();
+                    //string resultContent = await result.Result.Content.ReadAsStringAsync();
 
-                    Console.WriteLine("{0} - Image uploading completed . Result {1}", imageName, resultContent);
+                    //Console.WriteLine("{0} - Image uploading completed . Result {1}", imageName, resultContent);
 
-                    if (string.IsNullOrWhiteSpace(resultContent))
-                    {
-                        MoveFile(filePath);
+                    //if (string.IsNullOrWhiteSpace(resultContent))
+                    //{
+                        MoveFile(filePath, true);
                         Console.WriteLine(" {0} - Image moved", filePath);
-                    }
+                    //}
                 }
             }
             catch(Exception ex)
@@ -167,11 +166,11 @@ namespace ImageUploader
 
                     Console.WriteLine("{0} - Image uploading completed . Result {1}", imageName, resultContent);
 
-                    if (string.IsNullOrWhiteSpace(resultContent))
-                    {
-                        MoveFile(filePath);
+                    //if (string.IsNullOrWhiteSpace(resultContent))
+                    //{
+                        MoveFile(filePath, false);
                         Console.WriteLine(" {0} - Image moved", filePath);
-                    }
+                    //}
                 }
             }
             catch (Exception ex)
@@ -181,7 +180,7 @@ namespace ImageUploader
             }
         }
 
-        static void MoveFile(string file)
+        static void MoveFile(string file, bool isMainFile)
         {
             string[] data = file.Split('\\');
             string toDir = string.Join("\\", data.Take(data.Length - 1)) + "\\Uploaded\\";
@@ -191,7 +190,22 @@ namespace ImageUploader
             {
                 Directory.CreateDirectory(toDir);
             }
-            File.Move(file, to);
+            if (File.Exists(file))
+            {
+                File.Move(file, to);
+                File.Delete(file);
+            }
+            if (isMainFile)
+            {
+                string sensorDataFileFromPath = file.Replace("Image", "SensorData").Replace("jpg", "txt").Replace("JPG", "txt");
+                string sensorDataFileToPath = to.Replace("Image", "SensorData").Replace("jpg", "txt").Replace("JPG", "txt");
+
+                if (File.Exists(sensorDataFileFromPath))
+                {
+                    File.Move(sensorDataFileFromPath, sensorDataFileToPath);
+                    File.Delete(sensorDataFileFromPath);
+                }
+            }
         }
     }
 }
