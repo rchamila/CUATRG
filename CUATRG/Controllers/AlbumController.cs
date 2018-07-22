@@ -45,7 +45,8 @@ namespace CUATRG.Controllers
         }
 
         // GET: /Store/Browse
-        public ActionResult Details(int albumId, int? imageId = null, int? processedImageId = null)
+        public ActionResult Details(int albumId, int? imageId = null, int? processedImageId = null,
+                                        int? conditionId = null, int? featureId = null)
         {
             string message = HttpUtility.HtmlEncode("Store.Browse, Album = " + albumId);
             
@@ -53,22 +54,32 @@ namespace CUATRG.Controllers
             tblImage selectedImage = null;
             tblProcessedImage selectedProcessedImage = null;
 
-            selectedAlbum = imageDB.tblAlbums.SingleOrDefault(i => i.ALB_IDPkey == albumId);
-            if (selectedAlbum != null && selectedAlbum.tblImages != null && selectedAlbum.tblImages.Count() > 0)
+            selectedAlbum = imageDB.tblAlbums.SingleOrDefault(a => a.ALB_IDPkey == albumId);
+            var query = imageDB.tblImages.Where(i => i.ALB_IDFkey == albumId); 
+            //if (conditionId != null)
+            //{
+            //    query = query.Where(i => i.ENC_IDFkey == conditionId);
+            //}
+
+            //if (featureId != null)
+            //{
+            //    query = query.Where(i => i.FTR_IDFkey == featureId);
+            //}
+
+            List<tblImage> images = query.ToList();
+            if (imageId != null)
             {
-                if (imageId == null)
-                {
-                    selectedImage = selectedAlbum.tblImages.FirstOrDefault();
-                }
-                else
-                {
-                    selectedImage = selectedAlbum.tblImages.SingleOrDefault(i => i.IMG_IDPkey == imageId);
-                }
+                selectedImage = images.SingleOrDefault( i => i.IMG_IDPkey == imageId);
             }
-            int selectedIndex = selectedAlbum.tblImages.ToList().IndexOf(selectedImage);
-            int nextIndex = selectedAlbum.tblImages.Count() - 1;
+            else
+            {
+                selectedImage = images.FirstOrDefault();
+            }
+
+            int selectedIndex = images.IndexOf(selectedImage);
+            int nextIndex = images.Count() - 1;
             int previousIndex = 0;
-            if(selectedAlbum.tblImages.Count() - 1 > selectedIndex)
+            if(images.Count() - 1 > selectedIndex)
             {
                 nextIndex = selectedIndex + 1;
             }
@@ -86,9 +97,11 @@ namespace CUATRG.Controllers
             var viewModel = new ImageDetailsViewModel
             {
                 Image = selectedImage,
-                NextImage = selectedAlbum.tblImages.ElementAt(nextIndex),
-                PreviousImage = selectedAlbum.tblImages.ElementAt(previousIndex),
-                ProcessedImage = selectedProcessedImage
+                NextImage = images.ElementAt(nextIndex),
+                PreviousImage = images.ElementAt(previousIndex),
+                ProcessedImage = selectedProcessedImage,
+                AvailableConditions = selectedAlbum.tblImages.Select(i => i.tblEnvironmentalCondition).Distinct().ToList(),
+                AvailableFeatures = selectedAlbum.tblImages.Select( i => i.tblFeature).Distinct().ToList()
             };
 
 

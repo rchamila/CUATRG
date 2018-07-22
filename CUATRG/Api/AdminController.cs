@@ -78,7 +78,7 @@ namespace CUATRG.Api
                         {
                             image.IMG_SensorDataPath = relativePath;
                         }
-                        else if (fileName.Contains("meta"))
+                        else if (fileName.Contains("Meta"))
                         {
                             image.IMG_MetaDataPath = relativePath;
                         }

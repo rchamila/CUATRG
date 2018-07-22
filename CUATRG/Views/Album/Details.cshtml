@@ -14,7 +14,7 @@
     </ol>
 </div>
 <div class="container">
-    <div class="col-md-8">
+    <div class="col-md-8" style="padding-left:0px">
         <div class="img-thumbnail">
             @{
 
@@ -34,48 +34,75 @@
             }
             <img src="@link" style="width: 100%;" />
         </div>
-        <div class="col-md-11 well">
-            <div class="col-md-4">
-                <a class="btn btn-lg btn-default btn-block" href="@Url.Action("Details", "Album", new { albumId = Html.Encode(Model.Image.ALB_IDFkey), imageId = Html.Encode(Model.PreviousImage.IMG_IDPkey) })">
-                    Prev
-                </a>
+        <div class="col-md-12 well">
+            <div class="row align-middle">
+                @*<div class="col-md-2"></div>*@
+                <div class="col-md-4">
+                    <a class="btn btn-lg btn-default btn-block" href="@Url.Action("Details", "Album", new { albumId = Html.Encode(Model.Image.ALB_IDFkey), imageId = Html.Encode(Model.PreviousImage.IMG_IDPkey) })">
+                        Prev
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <div class="alert alert-info alert-sm text-center">
+                        @Model.Image.tblEnvironmentalCondition.ENC_Description
+                    </div>
+            
+        </div>
+                <div class="col-md-4">
+                    <a class="btn btn-lg btn-default btn-block" href="@Url.Action("Details", "Album", new { albumId = Html.Encode(Model.Image.ALB_IDFkey), imageId = Html.Encode(Model.NextImage.IMG_IDPkey) })">
+                        Next
+                    </a>
+                </div>
+                @*<div class="col-md-2"></div>*@
             </div>
-            <div class="col-md-4">
-                <a class="btn btn-lg btn-default btn-block" href="#">
-                    @Model.Image.IMG_Name
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a class="btn btn-lg btn-default btn-block" href="@Url.Action("Details", "Album", new { albumId = Html.Encode(Model.Image.ALB_IDFkey), imageId = Html.Encode(Model.NextImage.IMG_IDPkey) })">
-                    Next
-                </a>
-            </div>
+            <div style="clear: both; height: 20px; width: 100%"></div>
+            @*<div class="col-lg-12 well">
+                <h3>Apply Conditions</h3>
+                <div class="row">
+                    <div class="col-sm-6">
+                         
+                        @Html.DropDownList("ddlConditions",
+                                                    new SelectList(
+                                                        Model.AvailableConditions.Select(x => new { Value = x.ENC_IDPkey, Text = x.ENC_Name }),
+                                                        "Value",
+                                                        "Text"
+                                                       ),
+                                                     "Any Environment",
+                                                    new { @class = "form-control", @id = "ddlConditions", @onchange = "ddlSelectedIndexChanged()" })
+                    </div>
+                    <div class="col-sm-6">
+                        
+                        @Html.DropDownList("ddlFeatures",
+                                                    new SelectList(
+                                                        Model.AvailableFeatures.Select(x => new { Value = x.FTR_IDPkey, Text = x.FTR_Name }),
+                                                        "Value",
+                                                        "Text"
+                                                    ),
+                                                     "Any Feature",
+                                                    new { @class = "form-control", @id = "ddlFeatures", @onchange = "ddlSelectedIndexChanged()" })
+                    </div>
+                </div>
+            </div>*@
+
             <div style="clear: both; height: 20px; width: 100%"></div>
             <div class="col-lg-12 well">
                 <h3>Apply Filter</h3>
                 <div>
-                    @*@if (Model.ProcessedImage == null)
-                        {
-                            var onClick = String.Format("radiobuttontest({0}, {1}, {2})", Model.Image.ALB_IDFkey, Model.Image.IMG_IDPkey, -1);
-                            @Html.RadioButtonFor(model => model.Image, 0, new { @id = "Filter0", @onclick = onClick, @checked = "checked" })
-                            <span style="margin-left: 5px;">Original</span>
-                        }*@
-
-                    @{
+                   @{
                         var index3 = 0;
                         foreach (CUATRG.Models.tblProcessedImage processed in Model.Image.tblProcessedImages)
                         {
-                            var onClick = String.Format("radiobuttontest({0}, {1}, {2})", Model.Image.ALB_IDFkey, Model.Image.IMG_IDPkey, processed.PIM_IDPkey);
+                            var onClick = String.Format("featureCheked({0}, {1}, {2})", Model.Image.ALB_IDFkey, Model.Image.IMG_IDPkey, processed.PIM_IDPkey);
                             var remainder = index3 % 2;
                             if (index3 == 0)
                             {
                                 @:<div class="row">
                                     <div class="col-md-6">
                                         @{
-                                            var onClickOriginal = String.Format("radiobuttontest({0}, {1}, {2})", Model.Image.ALB_IDFkey, Model.Image.IMG_IDPkey, -1);
+                                            var onClickOriginal = String.Format("featureCheked({0}, {1}, {2})", Model.Image.ALB_IDFkey, Model.Image.IMG_IDPkey, -1);
 
                                             //if (Model.ProcessedImage != null && Model.ProcessedImage.PIM_IDPkey == processed.PIM_IDPkey)
-                                            if(Model.ProcessedImage == null)
+                                            if (Model.ProcessedImage == null)
                                             {
                                                 @Html.RadioButtonFor(model => model.ProcessedImage, processed.PIM_IDPkey, new { @id = "Filter" + processed.PIM_IDPkey, @onclick = onClickOriginal, @checked = "checked" });
                                             }
@@ -129,11 +156,15 @@
                 </div>
             </div>
         </div>
-    </div>
+        </div>
     <div class="col-md-4 well">
         <div class="h4">Meta Info:</div>
         <br />
         @{
+            if (Model.Image.tblMetaDatas == null || Model.Image.tblMetaDatas.Count == 0)
+            {
+                <p>Meta data not available for this image</p>
+            }
             var index1 = 0;
             <div id="collapseOne">
                 @{
@@ -158,7 +189,7 @@
 
                 <div id="collapseTwo" class="collapse">
                     @{
-                        foreach (CUATRG.Models.tblMetaData meta in Model.Image.tblMetaDatas)
+                        foreach (CUATRG.Models.tblMetaData meta in Model.Image.tblMetaDatas.Where( m => m.tblMetaType.MTT_Inactive == false))
                         {
 
                             if (index2 > 4)
@@ -187,25 +218,29 @@
                     {
                         if (Model.Image != null && !string.IsNullOrWhiteSpace(Model.Image.IMG_SensorDataPath))
                         {
-                            sensordata = System.Configuration.ConfigurationManager.AppSettings["domain"] + Model.Image.IMG_SensorDataPath + "//" + Model.Image.IMG_Name.Replace("IMG", "SensorData").Replace("jpg", "txt");
+                            sensordata = System.Configuration.ConfigurationManager.AppSettings["domain"] + Model.Image.IMG_SensorDataPath + "//"
+                                        + Model.Image.IMG_Name.Replace("IMG", "SensorData").Replace("Image", "SensorData").Replace("jpg", "txt").Replace("JPG", "txt");
                             <a href="@sensordata" target="_blank" class="btn btn-lg btn-primary btn-block" id="lnkSensorData" download>Download IMU Data</a>
                         }
 
                         if (Model.Image != null && !string.IsNullOrWhiteSpace(Model.Image.IMG_MetaDataPath))
                         {
-                            metadata = System.Configuration.ConfigurationManager.AppSettings["domain"] + Model.Image.IMG_MetaDataPath;
-                            <a href="@metadata" class="btn btn-lg btn-primary btn-block" target="_blank" id="lnkMetaData" download>Download Sensor Data</a>
+                            metadata = System.Configuration.ConfigurationManager.AppSettings["domain"] + Model.Image.IMG_MetaDataPath + "//"
+                                        + Model.Image.IMG_Name.Replace("IMG", "MetaData").Replace("Image", "MetaData").Replace("jpg", "txt").Replace("JPG", "txt");
+                            <a href="@metadata" class="btn btn-lg btn-primary btn-block" target="_blank" id="lnkMetaData" download>Download Meta Data</a>
                         }
                     }
                 }
             </div>
         </div>
     </div>
-
+@Html.Hidden("hdnAlbumId", Model.Image.ALB_IDFkey)
+@Html.Hidden("hdnImageId", Model.Image.IMG_IDPkey)
+</div>
 </div>
 
 <script type="text/javascript">
-    function radiobuttontest(albumId, imageId, processedImageId) {
+    function featureCheked(albumId, imageId, processedImageId) {
         if (processedImageId > 0) {
             window.location = "details?albumId=" + albumId + "&imageId=" + imageId + "&processedImageId=" + processedImageId;
         }
@@ -214,12 +249,36 @@
         }
     }
 
+    //ddlFeaturesSelectedIndexChanged
+    function ddlSelectedIndexChanged() {  
+        var cond = $("#ddlConditions").val()
+
+        var feature = $("#ddlConditions").val()
+        var filter = $("input[name='ProcessedImage']:checked").val(); 
+        
+        var url = "details?albumId=" + $("#hdnAlbumId").val() + "&imageId=" + $("#hdnImageId").val();
+        alert(filter)
+        if (filter > 0) {
+            url = url + "&processedImageId=" + filter;
+        }  
+
+        if (cond > 0) {
+            url = url + "&conditionid=" + cond;
+        } 
+
+        if (feature > 0) {
+            url = url + "&featureid=" + feature;
+        } 
+        window.location = url;
+    }
+     
+
     $(document).ready(function () {
         $('#view-more').text("View More");
         $('#view-more').click(function () { //you can give id or class name here for $('button')
             $(this).text(function (i, old) {
                 return old == "View More" ? "View Less" : "View More";
             });
-        });
+        }); 
     });
 </script>

@@ -101,6 +101,7 @@ warning 6002: The table/view 'D:\GITPROJECTS\CUATRG\CUATRG\APP_DATA\CUATRG.MDF.d
           <Property Name="MTT_IDPkey" Type="int" Nullable="false" />
           <Property Name="MTT_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="MTT_Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="MTT_Inactive" Type="bit" />
         </EntityType>
         <EntityType Name="tblProcessedImages">
           <Key>
@@ -572,6 +573,7 @@ FROM [dbo].[Log] AS [Log]</DefiningQuery>
           <Property Type="String" Name="MTT_Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="MTT_Description" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tblMetaDatas" Relationship="CUATRGEntities2.FK_tblMetaData_tblMetaType" FromRole="tblMetaType" ToRole="tblMetaData" />
+          <Property Name="MTT_Inactive" Type="Boolean" />
         </EntityType>
         <EntityType Name="tblMetaData">
           <Key>
@@ -731,6 +733,7 @@ FROM [dbo].[Log] AS [Log]</DefiningQuery>
           <EntitySetMapping Name="tblMetaTypes">
             <EntityTypeMapping TypeName="CUATRGEntities2.tblMetaType">
               <MappingFragment StoreEntitySet="tblMetaType">
+                <ScalarProperty Name="MTT_Inactive" ColumnName="MTT_Inactive" />
                 <ScalarProperty Name="MTT_Description" ColumnName="MTT_Description" />
                 <ScalarProperty Name="MTT_Name" ColumnName="MTT_Name" />
                 <ScalarProperty Name="MTT_IDPkey" ColumnName="MTT_IDPkey" />

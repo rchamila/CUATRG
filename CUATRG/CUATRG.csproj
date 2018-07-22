@@ -397,6 +397,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\Albums\" />
+    <Folder Include="Images\Processed\" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Models\ImageStore.edmx">

@@ -12,5 +12,7 @@ namespace CUATRG.ViewModels
         public tblImage PreviousImage;
         public tblImage NextImage;
         public tblProcessedImage ProcessedImage;
+        public List<tblEnvironmentalCondition> AvailableConditions { get; set; }
+        public List<tblFeature> AvailableFeatures { get; set; }
     }
 }

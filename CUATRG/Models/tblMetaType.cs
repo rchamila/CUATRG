@@ -22,6 +22,7 @@ namespace CUATRG.Models
         public int MTT_IDPkey { get; set; }
         public string MTT_Name { get; set; }
         public string MTT_Description { get; set; }
+        public Nullable<bool> MTT_Inactive { get; set; }
     
         public virtual ICollection<tblMetaData> tblMetaDatas { get; set; }
     }

@@ -23,7 +23,8 @@ namespace ImageUploader
             log.Warn("Job started");
             //Task.Run(() => MainAsync());
             List<string> files = DirSearch(baseDir + "Albums");
-            foreach(string file in files)
+            Console.WriteLine("Image uploading started, No of images trying to upload : {0}", files.Count);
+            foreach (string file in files)
             {
                 //Task.Run(() => MainAsync(file));
                 MainAsync(file);
@@ -31,6 +32,8 @@ namespace ImageUploader
 
 
             List<string> processedfiles = DirSearch(baseDir + "Processed");
+            Console.WriteLine("Processed Image uploading started, No of procesed images trying to upload : {0}", processedfiles.Count);
+
             foreach (string file in processedfiles)
             {
                 //Task.Run(() => MainAsync(file));
@@ -83,7 +86,7 @@ namespace ImageUploader
 
                     imageName = imgInfo.Name;
 
-                    Console.WriteLine("{0} - Image uploading started", imageName);
+                    //Console.WriteLine("{0} - Image uploading started", imageName);
 
                     string[] param = filePath.Replace(baseDir + "\\", "").Split('\\');
                     var masterimage = new ByteArrayContent(System.IO.File.ReadAllBytes(filePath));
@@ -106,25 +109,26 @@ namespace ImageUploader
                     content.Add(sensordata, "sensordata");
 
                     var metaData = new ByteArrayContent(ImageHelper.GetMetaDataByteStream(filePath));
-                    
+
                     metaData.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
                     {
-                        FileName = imageName.Replace("Image", "MetaData").Replace("jpg", "txt")
+                        FileName = imageName.Replace("Image", "MetaData").Replace("jpg", "txt").Replace("JPG", "txt")
                     };
                     content.Add(metaData, "metadata");
 
 
                     var url = string.Format("{0}/Admin/AddImage?ddlAlbums={1}&ddlConditions={2}&ddlFeatures={3}", api, param[4], param[5], "Normal");
                     var result = client.PostAsync(url, content);
-                    //string resultContent = await result.Result.Content.ReadAsStringAsync();
+                    string resultContent = await result.Result.Content.ReadAsStringAsync();
 
-                    //Console.WriteLine("{0} - Image uploading completed . Result {1}", imageName, resultContent);
+                    Console.WriteLine("{0} - Image uploading completed . Result {1}", imageName, resultContent);
 
-                    //if (string.IsNullOrWhiteSpace(resultContent))
-                    //{
+                    if (!string.IsNullOrWhiteSpace(resultContent) &&
+                            (resultContent.Contains("OK") || resultContent.Contains("Exists")) )
+                    {
                         MoveFile(filePath, true);
-                        Console.WriteLine(" {0} - Image moved", filePath);
-                    //}
+                        Console.WriteLine(" {0} - Image moved to uploaded directory", filePath);
+                    }
                 }
             }
             catch(Exception ex)
@@ -147,7 +151,7 @@ namespace ImageUploader
 
                     imageName = imgInfo.Name;
 
-                    Console.WriteLine("{0} - Image uploading started", imageName);
+                    //Console.WriteLine("{0} - Image uploading started", imageName);
 
                     string[] param = filePath.Replace(baseDir + "\\", "").Split('\\');
                     var processedimage = new ByteArrayContent(System.IO.File.ReadAllBytes(filePath));
@@ -166,11 +170,12 @@ namespace ImageUploader
 
                     Console.WriteLine("{0} - Image uploading completed . Result {1}", imageName, resultContent);
 
-                    //if (string.IsNullOrWhiteSpace(resultContent))
-                    //{
+                    if (!string.IsNullOrWhiteSpace(resultContent) &&
+                            (resultContent.Contains("OK") || resultContent.Contains("Exists")))
+                    {
                         MoveFile(filePath, false);
-                        Console.WriteLine(" {0} - Image moved", filePath);
-                    //}
+                        Console.WriteLine(" {0} - Image moved to uploaded directory", filePath);
+                    }
                 }
             }
             catch (Exception ex)

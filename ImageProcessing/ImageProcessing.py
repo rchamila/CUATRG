@@ -80,6 +80,8 @@ for image in images:
         scipy.misc.imsave(pathCanny3 + image.split('\\')[-1] , edge_canny3)
         scipy.misc.imsave(pathCanny4 + image.split('\\')[-1] , edge_canny4)
         scipy.misc.imsave(pathPrewitt + image.split('\\')[-1] , edge_prewitt)
+
+        print("Image processing completed for :" , image.split('\\')[-1])
     except:
         print("Unexpected error occured processing image :" , image.split('\\')[-1] , " Error : ", sys.exc_info()[0])
     

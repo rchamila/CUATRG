@@ -1,5 +1,6 @@
 ﻿using CUATRG.Models;
 using LevDan.Exif;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -29,8 +30,8 @@ namespace CUATRG.Common
         {
             var dbCtx = new CUATRGEntities4();
             return dbCtx.tblProcessedImages.Any<tblProcessedImage>(i => i.PIM_Name == image.PIM_Name
-                                                    && i.FLT_IDFkey == image.FLT_IDFkey
-                                                    && i.IMG_IDFkey == image.IMG_IDFkey);
+                                                    && i.FLT_IDFkey == image.tblFilter.FLT_IDPkey
+                                                    && i.IMG_IDFkey == image.tblImage.IMG_IDPkey);
 
 
         }
@@ -66,21 +67,28 @@ namespace CUATRG.Common
         public static byte[] GetMetaDataByteStream(string imagePath)
         {
             ExifTagCollection _exif = new ExifTagCollection(imagePath);
-            StringBuilder builder = new StringBuilder();
+            Dictionary<string, string> meta = new Dictionary<string, string>();
             foreach (ExifTag tag in _exif)
             {
-                builder.Append(tag.FieldName);
-                builder.Append(":");
-                builder.Append(tag.Value.Length > 500 ? "" : tag.Value); 
+                meta.Add(tag.FieldName, tag.Value.Length > 500 ? "" : tag.Value); 
             }
 
-            BinaryFormatter bf = new BinaryFormatter();
-            using (MemoryStream ms = new MemoryStream())
-            {
-                bf.Serialize(ms, builder.ToString());
-                return ms.ToArray();
+            string jsonstring = JsonConvert.SerializeObject(meta);
 
-            }
+            //BinaryFormatter bf = new BinaryFormatter();
+            //using (MemoryStream ms = new MemoryStream())
+            //{
+            //    bf.Serialize(ms, jsonstring);
+            //    return ms.ToArray(); 
+            //}
+
+            string someString = Encoding.ASCII.GetString(Encoding.ASCII.GetBytes(jsonstring));
+
+            return Encoding.ASCII.GetBytes(jsonstring);
         }
     }
+
+    public class Meta {
+        
+    } 
 }

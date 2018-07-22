@@ -6,133 +6,221 @@
 }
 
 <div class="container well">
-    @using (Html.BeginForm("Index", "Library", FormMethod.Post, new { id = "calcForm" }))
-    { 
-        <ol class="breadcrumb">
-            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-            <li class="active"><a href="#">Library</a></li>
+    @*@using (Html.BeginForm("Index", "Library", FormMethod.Post, new { id = "calcForm" }))
+        {*@
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="active"><a href="#">Library</a></li>
 
-        </ol>
-        <div class="container">
+    </ol>
+    <div class="container">
 
-            <h1>Image Search</h1>
-            <br />
-            <div class="col-md-6">
-                <div class="col-md-4">
-                    <div class="h4 margin-left">Album</div>
-                </div>
-                <div class="col-md-6">
-
-                    <div class="form-group">
-                        @Html.DropDownList("ddlAlbums",
-                                                new SelectList(
-                                                    Model.Albums.Select(x => new { Value = x.ALB_IDPkey, Text = x.ALB_Name }),
-                                                    "Value",
-                                                    "Text"
-                                                   ),
-                                                 "-- Select Album --",
-                                                new { @class = "form-control" })
-                    </div>
-
-                </div>
-                <div class="col-md-4">
-                    <div class="h4 margin-left">Env Cond</div>
-                </div>
-                <div class="col-md-6">
-
-                    <div class="form-group">
-                      @Html.DropDownList("ddlConditions",
-                                                new SelectList(
-                                                    Model.Conditions.Select(x => new { Value = x.ENC_IDPkey, Text = x.ENC_Name }),
-                                                    "Value",
-                                                    "Text"
-                                                   ),
-                                                 "-- Select Condition --",
-                                                new { @class = "form-control" })
-                    </div>
-
-                </div>
-                
+        <h1>Image Search</h1>
+        <br />
+        <div class="col-md-6">
+            <div class="col-md-4">
+                <div class="h4 margin-left">Album</div>
             </div>
             <div class="col-md-6">
-                <div class="col-md-4">
-                    <div class="h4 margin-left">Feature</div>
-                </div>
-                <div class="col-md-6">
 
-                    <div class="form-group">
-                        @Html.DropDownList("ddlFeatures",
-                                                new SelectList(
-                                                    Model.Features.Select(x => new { Value = x.FTR_IDPkey, Text = x.FTR_Name }),
-                                                    "Value",
-                                                    "Text"
-                                                ),
-                                                 "-- Select Feature --",
-                                                new { @class = "form-control" })
-                    </div>
-
-                </div>
-                <div class="col-md-4">
-                    <div class="h4 margin-left"></div>
-                </div>
-                <div class="col-md-6">
-
-                    <div class="form-group">
-                          
-                    </div>
-
+                <div class="form-group">
+                    @Html.DropDownList("ddlAlbums",
+                                            new SelectList(
+                                                Model.Albums.Select(x => new { Value = x.ALB_IDPkey, Text = x.ALB_Name }),
+                                                "Value",
+                                                "Text"
+                                               ),
+                                             "-- Select Album --",
+                                            new { @class = "form-control" })
                 </div>
 
             </div>
+            <div class="col-md-4">
+                <div class="h4 margin-left">Env Cond</div>
+            </div>
+            <div class="col-md-6">
 
+                <div class="form-group">
+                    @Html.DropDownList("ddlConditions",
+                                              new SelectList(
+                                                  Model.Conditions.Select(x => new { Value = x.ENC_IDPkey, Text = x.ENC_Name }),
+                                                  "Value",
+                                                  "Text"
+                                                 ),
+                                               "-- Select Condition --",
+                                              new { @class = "form-control" })
+                </div>
 
+            </div>
 
         </div>
+        <div class="col-md-6">
+            <div class="col-md-4">
+                <div class="h4 margin-left">Feature</div>
+            </div>
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    @Html.DropDownList("ddlFeatures",
+                                            new SelectList(
+                                                Model.Features.Select(x => new { Value = x.FTR_IDPkey, Text = x.FTR_Name }),
+                                                "Value",
+                                                "Text"
+                                            ),
+                                             "-- Select Feature --",
+                                            new { @class = "form-control" })
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="h4 margin-left"></div>
+            </div>
+            <div class="col-md-6">
+
+                <div class="form-group">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+    <br />
+
+
+    <div class="col-md-6 col-sm-offset-2">
+        <div class="col-md-3">
+            <button type="button" class="btn btn-lg btn-primary btn-block" name="submit" onclick="Search(1)">Search</button>
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-lg btn-default btn-block">Clear</button>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
     
-        <br />
-     
-       
-        <div class="col-md-6 col-sm-offset-2">
-            <div class="col-md-3">
-                <button type="submit" class="btn btn-lg btn-primary btn-block" name="submit">Search</button>
-            </div>
-            <div class="col-md-3">
-                <button type="button" class="btn btn-lg btn-default btn-block">Clear</button>
-            </div>
-        </div>
-         <br />
-        <br />
-        <br />
-        if (Model.Images != null && Model.Images.Count > 0)
-            {
-        <table class="table table-striped">
-            <tr>
-                <th>Image</th>
-                <th>Album</th>
-                <th>Condition</th>
-                <th>Feature</th>
-                <th>View</th>
-            </tr>
+    <table class="table table-striped" id="results">
+        <thead id="resultsheader">
+           
+        </thead>
+        <tbody id="resultsbody">
             
-            @foreach (CUATRG.Models.tblImage image in Model.Images)
-            {
-                <tr class="align-middle">
-                    <td><img style="height:64px;width:64px" src="@Url.Content(System.Configuration.ConfigurationManager.AppSettings["domain"] + image.IMG_Path + "//" + image.IMG_Name)" alt="Image" /></td>
-                    <td class="valign-center">@image.tblAlbum.ALB_Name</td>
-                    <td class="valign-center">@image.tblEnvironmentalCondition.ENC_Name</td>
-                    <td class="valign-center">@image.tblFeature.FTR_Name</td>
-                    <td class="valign-center">
-                        <a title="View Image" class="my_act_btn" href="@Url.Action("Details", "Album", new { albumId = Html.Encode(image.ALB_IDFkey), imageId = Html.Encode(image.IMG_IDPkey) })">
-                            <button type="button" class="btn btn-primary btn-xs">
-                                <span class="glyphicon "></span> View
-                            </button>
-                        </a>
-                    </td>
-                </tr>
-            }
-
-
-        </table>
-            }
-    }
+        </tbody>
+    </table>
+    
+       
+        @*}*@
+        @Html.Hidden("CurrentPage", Model.CurrentPage)
 </div>
+<script>
+
+
+
+    //$(document).ready(function () {
+
+        function GetSearchUrl(pageId) {
+
+            var cond = $("#ddlConditions").val()
+            var feature = $("#ddlFeatures").val()
+            var album = $("#ddlAlbums").val()
+            var page = $("#CurrentPage").val()
+
+            var url = "/Library/Search?pageIndex=" + pageId;
+
+            if (album > 0) {
+                url = url + "&ddlAlbums=" + album;
+            }
+
+            if (cond > 0) {
+                url = url + "&ddlConditions=" + cond;
+            }
+
+            if (feature > 0) {
+                url = url + "&ddlFeatures=" + feature;
+            }
+            return url;
+        }
+
+        function Search(pageId) {
+            var url = GetSearchUrl(pageId);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {},
+                success: Success
+            });
+        }
+
+        function Success(data) {
+            
+            $('#resultsbody').empty();
+            $('#resultsheader').empty();
+
+            var header = ''; 
+            var rows = '';
+
+            if (data.Images.length <= 0) {
+                header = header.concat('<tr>')
+                header = header.concat('<th colspan="5">No images found</th>')
+                header = header.concat('</tr> ')
+                $('#resultsheader').append(header)
+                return;
+            }
+
+            
+            header = header.concat('<tr>')
+            header = header.concat('<th>Image</th>')
+            header = header.concat('<th>Album</th>')
+            header = header.concat('<th>Condition</th>')
+            header = header.concat('<th>Feature</th>')
+            header = header.concat('<th>View</th>')
+            header = header.concat('</tr> ')
+
+            for (var i = 0; i <= (data.Images.length - 1); i++)
+            {
+                rows = rows.concat('<tr class="align-middle">')
+                rows = rows.concat('<td><img style="height:64px;width:64px" src="' + data.Images[i].Path + '" alt="Image" /></td>')
+                rows = rows.concat('<td class="valign-center">' + data.Images[i].Album + '</td>')
+                rows = rows.concat('<td class="valign-center">' + data.Images[i].Condition + '</td>')
+                rows = rows.concat('<td class="valign-center">' + data.Images[i].Feature + '</td>')
+                rows = rows.concat('<td class="valign-center">')
+                rows = rows.concat('<a title="View Image" class="my_act_btn" target="_blank" href="/Album/Details?albumId=' + data.Images[i].AlbumId + '&imageId=' + data.Images[i].ImageId + '">') //Url.Action("Details", "Album", new { albumId = image[i].albumid, imageId = image[i].imageid })
+                rows = rows.concat('<button type="button" class="btn btn-primary btn-xs">')
+                rows = rows.concat('<span class="glyphicon "></span> View')
+                rows = rows.concat('</button>')
+                rows = rows.concat('</a>')
+                rows = rows.concat('</td>')
+                rows = rows.concat('</tr>')
+            }
+
+            rows = rows.concat('<tr>')
+            rows = rows.concat('<td colspan="6">')
+            rows = rows.concat('<ul class="pagination">') 
+
+            for (var i = 1; i <= (data.PageCount); i++)
+            {
+                if (i == data.CurrentPage)
+                {
+                    rows = rows.concat('<li class="active"><a href="#" onclick="Search(' + i + ')">'+i+'</a></li>')
+                }
+                else
+                {
+                    rows = rows.concat('<li><a href="#" onclick="Search(' + i + ')">' + i +'</a></li>')
+                }
+            }
+            rows = rows.concat('</ul>')
+            rows = rows.concat('</td>')
+            rows = rows.concat('</tr>')
+ 
+            $('#resultsbody').append(rows)
+            $('#resultsheader').append(header)
+        }
+    //});
+
+</script>
