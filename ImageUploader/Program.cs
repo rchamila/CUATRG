@@ -112,7 +112,7 @@ namespace ImageUploader
 
                     metaData.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
                     {
-                        FileName = imageName.Replace("Image", "MetaData").Replace("jpg", "csv").Replace("JPG", "csv")
+                        FileName = imageName.Replace("Image", "MetaData").Replace("jpg", "json").Replace("JPG", "json")
                     };
                     content.Add(metaData, "metadata");
 

@@ -226,7 +226,7 @@
                         if (Model.Image != null && !string.IsNullOrWhiteSpace(Model.Image.IMG_MetaDataPath))
                         {
                             metadata = System.Configuration.ConfigurationManager.AppSettings["domain"] + Model.Image.IMG_MetaDataPath + "//"
-                                        + Model.Image.IMG_Name.Replace("IMG", "MetaData").Replace("Image", "MetaData").Replace("jpg", "csv").Replace("JPG", "csv");
+                                        + Model.Image.IMG_Name.Replace("IMG", "MetaData").Replace("Image", "MetaData").Replace("jpg", "json").Replace("JPG", "json");
                             <a href="@metadata" class="btn btn-lg btn-primary btn-block" target="_blank" id="lnkMetaData" download>Download Meta Data</a>
                         }
                     }
