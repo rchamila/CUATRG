@@ -98,7 +98,7 @@ namespace ImageUploader
 
                     content.Add(masterimage, "masterimage");
 
-                    string sensorDataFilePath = filePath.Replace("Image", "SensorData").Replace("jpg","txt").Replace("JPG", "txt");
+                    string sensorDataFilePath = filePath.Replace("Image", "SensorData").Replace("jpg","csv").Replace("JPG", "csv");
                     FileInfo sensordataInfo = new FileInfo(sensorDataFilePath);
                     var sensordata = new ByteArrayContent(System.IO.File.ReadAllBytes(sensorDataFilePath));
 
@@ -112,7 +112,7 @@ namespace ImageUploader
 
                     metaData.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
                     {
-                        FileName = imageName.Replace("Image", "MetaData").Replace("jpg", "txt").Replace("JPG", "txt")
+                        FileName = imageName.Replace("Image", "MetaData").Replace("jpg", "csv").Replace("JPG", "csv")
                     };
                     content.Add(metaData, "metadata");
 
@@ -202,8 +202,8 @@ namespace ImageUploader
             }
             if (isMainFile)
             {
-                string sensorDataFileFromPath = file.Replace("Image", "SensorData").Replace("jpg", "txt").Replace("JPG", "txt");
-                string sensorDataFileToPath = to.Replace("Image", "SensorData").Replace("jpg", "txt").Replace("JPG", "txt");
+                string sensorDataFileFromPath = file.Replace("Image", "SensorData").Replace("jpg", "csv").Replace("JPG", "csv");
+                string sensorDataFileToPath = to.Replace("Image", "SensorData").Replace("jpg", "csv").Replace("JPG", "csv");
 
                 if (File.Exists(sensorDataFileFromPath))
                 {

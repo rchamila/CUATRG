@@ -219,14 +219,14 @@
                         if (Model.Image != null && !string.IsNullOrWhiteSpace(Model.Image.IMG_SensorDataPath))
                         {
                             sensordata = System.Configuration.ConfigurationManager.AppSettings["domain"] + Model.Image.IMG_SensorDataPath + "//"
-                                        + Model.Image.IMG_Name.Replace("IMG", "SensorData").Replace("Image", "SensorData").Replace("jpg", "txt").Replace("JPG", "txt");
+                                        + Model.Image.IMG_Name.Replace("IMG", "SensorData").Replace("Image", "SensorData").Replace("jpg", "csv").Replace("JPG", "csv");
                             <a href="@sensordata" target="_blank" class="btn btn-lg btn-primary btn-block" id="lnkSensorData" download>Download IMU Data</a>
                         }
 
                         if (Model.Image != null && !string.IsNullOrWhiteSpace(Model.Image.IMG_MetaDataPath))
                         {
                             metadata = System.Configuration.ConfigurationManager.AppSettings["domain"] + Model.Image.IMG_MetaDataPath + "//"
-                                        + Model.Image.IMG_Name.Replace("IMG", "MetaData").Replace("Image", "MetaData").Replace("jpg", "txt").Replace("JPG", "txt");
+                                        + Model.Image.IMG_Name.Replace("IMG", "MetaData").Replace("Image", "MetaData").Replace("jpg", "csv").Replace("JPG", "csv");
                             <a href="@metadata" class="btn btn-lg btn-primary btn-block" target="_blank" id="lnkMetaData" download>Download Meta Data</a>
                         }
                     }

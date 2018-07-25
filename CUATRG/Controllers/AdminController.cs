@@ -103,7 +103,7 @@ namespace CUATRG.Controllers
                 log.Info("Saving files started");
 
                 FileHelper.SaveFile(image, masterimage, image.IMG_Name);
-                FileHelper.SaveFile(image, sensordata, image.IMG_Name.Replace("IMG","SensorData").Replace("jpg","txt"));
+                FileHelper.SaveFile(image, sensordata, image.IMG_Name.Replace("IMG","SensorData").Replace("jpg","csv"));
 
                 log.Info("Saving files completed");
 
@@ -204,7 +204,7 @@ namespace CUATRG.Controllers
                     throw new InvalidOperationException("Image Exists"); 
 
                 FileHelper.SaveFile(image, masterimage , image.IMG_Name);
-                FileHelper.SaveFile(image, sensordata , image.IMG_Name.Replace("IMG", "SensorData").Replace("jpg", "txt"));
+                FileHelper.SaveFile(image, sensordata , image.IMG_Name.Replace("IMG", "SensorData").Replace("jpg", "csv"));
                 //image.IMG_MetaDataPath = FileHelper.SaveFile(image, metadata);
 
                
