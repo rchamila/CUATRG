@@ -314,6 +314,7 @@
     <Content Include="Images\default.png" />
     <Content Include="Libraries\FileHelpers.dll" />
     <Content Include="Scripts\bootstrap.js" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.7.1.jss" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Web.config">

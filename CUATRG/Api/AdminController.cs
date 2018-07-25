@@ -120,7 +120,7 @@ namespace CUATRG.Api
             catch (Exception ex)
             {
                 log.Error(string.Format("Error saving image {0}", image.IMG_Name), ex);
-                return ex.Message;
+                return ex.ToString();
             }
         }
 

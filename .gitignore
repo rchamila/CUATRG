@@ -24,3 +24,8 @@
 /ImageProcessing/CUATRG/Scripts
 /CUATRG/Images/Albums
 /CUATRG/Images/Processed
+/CUATRG/obj/Release
+/CUATRG.Test/bin/Release
+/CUATRG.Test/obj/Release
+/ImageUploader/bin/Release
+/ImageUploader/obj/Release

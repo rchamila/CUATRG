@@ -13,7 +13,7 @@ namespace ImageUploader
     class Program
     {
         private static string baseDir = @"D:\Temp\Upload\";
-        private static string api = @"http://localhost:55892/api";
+        private static string api = @"http://www.cuatrg.net/api";//@"http://localhost:55892/api";
         private static log4net.ILog log = log4net.LogManager.GetLogger
               (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         static void Main(string[] args)
