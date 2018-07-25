@@ -50,7 +50,7 @@ namespace ImageUploader
             {
                 foreach (string f in Directory.GetFiles(sDir))
                 {
-                    if (!f.Contains(".txt"))
+                    if (!f.Contains(".csv"))
                     {
                         files.Add(f);
                     }

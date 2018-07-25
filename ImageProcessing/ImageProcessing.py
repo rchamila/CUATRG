@@ -13,7 +13,7 @@ images = []
 
 for root, dirs, files in os.walk(rootDir + "Albums"):  
     for filename in files:
-        if  '.txt' not in filename and 'Uploaded' not in root:
+        if  '.csv' not in filename and 'Uploaded' not in root:
             imagePath = root + "\\" + filename #os.path.join(root, filename)
             images.append(imagePath)    
       
