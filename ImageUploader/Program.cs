@@ -13,7 +13,7 @@ namespace ImageUploader
     class Program
     {
         private static string baseDir = @"D:\Temp\Upload\";
-        private static string api = @"http://www.cuatrg.net/api";//@"http://localhost:55892/api";
+        private static string api = @"http://localhost:55892/api";//@"http://www.cuatrg.net/api";//
         private static log4net.ILog log = log4net.LogManager.GetLogger
               (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         static void Main(string[] args)
@@ -164,7 +164,7 @@ namespace ImageUploader
                     content.Add(processedimage, "processedimage");
 
                    
-                    var result = client.PostAsync(string.Format("{0}/Admin/AddProcessedImage?filtername={1}&name={2}", api, param[4], param[5]), content);
+                    var result = client.PostAsync(string.Format("{0}/Admin/AddProcessedImage?filterType={1}&filterName={2}&name={3}", api, param[4], param[5], param[6]), content);
                     //var result = client(string.Format("{0}/Admin/AddImage?ddlAlbums={1}&ddlConditions={2}&ddlFeatures={3}", api, param[0], param[1], param[2]), content);
                     string resultContent = await result.Result.Content.ReadAsStringAsync();
 

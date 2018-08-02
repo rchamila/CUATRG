@@ -125,7 +125,7 @@ namespace CUATRG.Api
         }
 
         [HttpPost]
-        public string AddProcessedImage(string name, string filterName)
+        public string AddProcessedImage(string name, string filterType, string filterName)
         {
             var processedImage = new tblProcessedImage();
             try
@@ -135,7 +135,7 @@ namespace CUATRG.Api
                 var masterImage = dbCtx.tblImages.FirstOrDefault(i => i.IMG_Name == name);
                 processedImage.tblImage = masterImage ?? throw new InvalidOperationException("Image not found");
 
-                var filter = dbCtx.tblFilters.FirstOrDefault(i => i.FLT_Name == filterName);
+                var filter = dbCtx.tblFilters.FirstOrDefault(i => i.FLT_Name == filterName && i.FLT_Description == filterType);
                 processedImage.tblFilter = filter ?? throw new InvalidOperationException("Filter not found");
                 processedImage.CMD_IDFkey = 1;//Fixed color mode to RGP
                 log.Info("Saving files started");

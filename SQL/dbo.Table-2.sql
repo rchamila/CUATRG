@@ -159,14 +159,17 @@ INSERT INTO [dbo].[tblFeatures] ([FTR_IDPkey], [FTR_Name]) VALUES (3, N'Shadowy'
 
 Go
 
-INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (1, N'Sobel     ', N'Sobel')
-INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (2, N'Prewitt   ', N'Prewitt')
-INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (3, N'Canny     ', N'Canny ')
-INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (4, N'Canny0.2  ', N'Canny 0.2')
-INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (5, N'Canny0.25 ', N'Canny 0.25')
-INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (6, N'Canny0.3  ', N'Canny 0.3')
-INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (7, N'Grayscale ', N'Grayscale')
-INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (8, N'Roberts   ', N'Roberts')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (1, N'Sobel     ', N'Edge')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (2, N'Prewitt   ', N'Edge')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (3, N'Canny     ', N'Edge ')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (4, N'Canny0.2  ', N'Edge') 
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (5, N'Canny0.3  ', N'Edge')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (6, N'Grayscale ', N'CM')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (7, N'Roberts   ', N'Edge')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (8, N'Gaussian   ', N'Noise')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (9, N'Salt', N'Noise')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (10, N'Pepper', N'Noise')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (11, N'Speckle', N'Noise')
 
 GO
 
