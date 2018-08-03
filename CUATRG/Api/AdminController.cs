@@ -147,8 +147,8 @@ namespace CUATRG.Api
                 {
                     foreach (var file in files.AllKeys)
                     {
-                        var path = string.Format("~/Images/Processed/{0}", filterName);
-                        var relativePath = string.Format("Images/Processed/{0}", filterName);
+                        var path = string.Format("~/{0}", masterImage.IMG_Path);
+                        var relativePath = masterImage.IMG_Path;
                         var fileName = files[file].FileName;
 
                         if (fileName.Contains("Image") || fileName.Contains("IMG"))

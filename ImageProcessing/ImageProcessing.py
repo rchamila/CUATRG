@@ -38,7 +38,7 @@ for image in images:
         noise_pepper = random_noise(im, "pepper") 
         noise_speckle = random_noise(im, "speckle") 
         
-        pathGrayscale = rootDir + "Processed\\Colormode\\Grayscale\\"
+        pathGrayscale = rootDir + "Processed\\CM\\Grayscale\\"
 
         if not os.path.exists(pathGrayscale):
             os.makedirs(pathGrayscale)

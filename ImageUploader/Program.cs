@@ -158,7 +158,7 @@ namespace ImageUploader
 
                     processedimage.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
                     {
-                        FileName = imgInfo.Name
+                        FileName = imgInfo.Name.Replace(".jpg",string.Format("_{0}.jpg", param[5]))
                     };
 
                     content.Add(processedimage, "processedimage");
