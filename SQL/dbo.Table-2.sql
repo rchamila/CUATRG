@@ -90,7 +90,7 @@ Go
 
 CREATE TABLE [dbo].[tblProcessedImages] (
     [PIM_IDPkey] INT            IDENTITY (1, 1) NOT NULL,
-    [PIM_Name]   NVARCHAR (50)  NOT NULL,
+    [PIM_Name]   NVARCHAR (200)  NOT NULL,
     [FLT_IDFkey] INT            NOT NULL,
     [CMD_IDFkey] INT            NOT NULL,
     [IMG_IDFkey] INT            NOT NULL,
@@ -159,14 +159,14 @@ INSERT INTO [dbo].[tblFeatures] ([FTR_IDPkey], [FTR_Name]) VALUES (3, N'Shadowy'
 
 Go
 
-INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (1, N'Sobel     ', N'Edge')
-INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (2, N'Prewitt   ', N'Edge')
-INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (3, N'Canny     ', N'Edge ')
-INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (4, N'Canny0.2  ', N'Edge') 
-INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (5, N'Canny0.3  ', N'Edge')
-INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (6, N'Grayscale ', N'CM')
-INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (7, N'Roberts   ', N'Edge')
-INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (8, N'Gaussian   ', N'Noise')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (1, N'Sobel', N'Edge')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (2, N'Prewitt', N'Edge')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (3, N'Canny 1.0', N'Edge')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (4, N'Canny 0.2', N'Edge') 
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (5, N'Canny 0.3', N'Edge')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (6, N'Grayscale', N'CM')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (7, N'Roberts', N'Edge')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (8, N'Gaussian', N'Noise')
 INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (9, N'Salt', N'Noise')
 INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (10, N'Pepper', N'Noise')
 INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (11, N'Speckle', N'Noise')

@@ -1,4 +1,5 @@
-import numpy as np 
+import numpy as np
+import glymur 
 import os
 import sys
 
@@ -29,14 +30,17 @@ for image in images:
         edge_sobel = sobel(img_gray)
         edge_canny1 = feature.canny(img_gray)
         edge_canny2 = feature.canny(img_gray, sigma=0.2)
-        #edge_canny3 = feature.canny(img_gray, sigma=0.25)
+        edge_canny3 = feature.canny(img_gray, sigma=0.25)
         edge_canny4 = feature.canny(img_gray, sigma=0.3)
         edge_prewitt = prewitt(img_gray)
+
+        
 
         noise_gaussian = random_noise(im, "gaussian") 
         noise_salt = random_noise(im, "salt") 
         noise_pepper = random_noise(im, "pepper") 
         noise_speckle = random_noise(im, "speckle") 
+        #noise_jp2 = glymur.jp2k(im)
         
         pathGrayscale = rootDir + "Processed\\CM\\Grayscale\\"
 
@@ -63,10 +67,10 @@ for image in images:
         if not os.path.exists(pathCanny2):
             os.makedirs(pathCanny2)
 
-        pathCanny3 = rootDir + "Processed\\Edge\\Canny0.25\\"
+        #pathCanny3 = rootDir + "Processed\\Edge\\Canny0.25\\"
 
-        if not os.path.exists(pathCanny3):
-            os.makedirs(pathCanny3)
+        #if not os.path.exists(pathCanny3):
+        #    os.makedirs(pathCanny3)
 
         pathCanny4 = rootDir + "Processed\\Edge\\Canny0.3\\"
 
@@ -98,19 +102,25 @@ for image in images:
         if not os.path.exists(speckle):
             os.makedirs(speckle)
 
-        scipy.misc.imsave(pathGrayscale + image.split('\\')[-1] , img_gray)
-        scipy.misc.imsave(pathRoberts + image.split('\\')[-1] , edge_roberts)
-        scipy.misc.imsave(pathSobel + image.split('\\')[-1] , edge_sobel)
-        scipy.misc.imsave(pathCanny1 + image.split('\\')[-1] , edge_canny1)
-        scipy.misc.imsave(pathCanny2 + image.split('\\')[-1] , edge_canny2)
-        #scipy.misc.imsave(pathCanny3 + image.split('\\')[-1] , edge_canny3)
-        scipy.misc.imsave(pathCanny4 + image.split('\\')[-1] , edge_canny4)
-        scipy.misc.imsave(pathPrewitt + image.split('\\')[-1] , edge_prewitt)
+        jp2k = rootDir + "Processed\\Noise\\jp2k\\"
+ 
 
-        scipy.misc.imsave(gaussian + image.split('\\')[-1] , noise_gaussian)
-        scipy.misc.imsave(salt + image.split('\\')[-1] , noise_salt)
-        scipy.misc.imsave(pepper + image.split('\\')[-1] , noise_pepper)
-        scipy.misc.imsave(speckle + image.split('\\')[-1] , noise_speckle)
+        imagename = image.split('\\')[-1]
+
+        scipy.misc.imsave(pathGrayscale + imagename.replace("Image_", "Image_Grayscale_" ) , img_gray)
+        scipy.misc.imsave(pathRoberts + imagename.replace("Image_", "Image_Roberts_" ) , edge_roberts)
+        scipy.misc.imsave(pathSobel + imagename.replace("Image_", "Image_Sobel_" ) , edge_sobel)
+        scipy.misc.imsave(pathCanny1 + imagename.replace("Image_", "Image_Canny_" ) , edge_canny1)
+        scipy.misc.imsave(pathCanny2 + imagename.replace("Image_", "Image_Canny0.2_" ) , edge_canny2)
+        #scipy.misc.imsave(pathCanny3 + imagename.replace("Image_", "Image_Canny0.25_" ) , edge_canny3)
+        scipy.misc.imsave(pathCanny4 + imagename.replace("Image_", "Image_Canny0.3_" ) , edge_canny4)
+        scipy.misc.imsave(pathPrewitt + imagename.replace("Image_", "Image_Prewitt_" ) , edge_prewitt)
+
+        scipy.misc.imsave(gaussian + imagename.replace("Image_", "Image_Gaussian_" ) , noise_gaussian)
+        scipy.misc.imsave(salt + imagename.replace("Image_", "Image_Salt_" ) , noise_salt)
+        scipy.misc.imsave(pepper + imagename.replace("Image_", "Image_Pepper_" ) , noise_pepper)
+        scipy.misc.imsave(speckle + imagename.replace("Image_", "Image_Speckle_" ) , noise_speckle)
+        #scipy.misc.imsave(jp2k + image.split('\\')[-1] , noise_jp2)
 
         print("Image processing completed for :" , image.split('\\')[-1])
     except:

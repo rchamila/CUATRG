@@ -130,9 +130,10 @@ namespace CUATRG.Api
             var processedImage = new tblProcessedImage();
             try
             {
+                var masterImageName = "image_" + name.Split('_')[2];
                 var dbCtx = new CUATRGEntities4();
 
-                var masterImage = dbCtx.tblImages.FirstOrDefault(i => i.IMG_Name == name);
+                var masterImage = dbCtx.tblImages.FirstOrDefault(i => i.IMG_Name == masterImageName);
                 processedImage.tblImage = masterImage ?? throw new InvalidOperationException("Image not found");
 
                 var filter = dbCtx.tblFilters.FirstOrDefault(i => i.FLT_Name == filterName && i.FLT_Description == filterType);
