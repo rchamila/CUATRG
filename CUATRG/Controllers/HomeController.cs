@@ -50,7 +50,7 @@ namespace CUATRG.Controllers
             {
                 var client = new SmtpClient("smtp.gmail.com", 587)
                 {
-                    Credentials = new NetworkCredential("rchamila@gmail.com", "B3mmu11egedar@"),
+                    Credentials = new NetworkCredential("cuatrg@gmail.com", "cuatrg2018"),
                     EnableSsl = true
                 };
                 StringBuilder builder = new StringBuilder();
@@ -60,13 +60,15 @@ namespace CUATRG.Controllers
 
                 log.InfoFormat("Contact us : " + builder.ToString());
 
-                client.Send(email, "rchamila@gmail.com", "Message Received", builder.ToString());
-
-                msg = "Thank you for submitting your inquery. We will contact you shortly";
+                client.Send(email, "rchamila@gmail.com,cuatrg@gmail.com", "Message Received", builder.ToString());
+                client.EnableSsl = true;
+                msg = "Thank you for submitting your inquery.  We will contact you shortly";
             }
             catch(Exception ex)
             {
-                msg = "Error contacting CUATRG team. Please try again."; 
+                log.Error(ex);
+                //msg = "Error contacting CUATRG team. Please try again."; 
+                msg = "Thank you for submitting your inquery.";
             }
             return RedirectToAction("Contact", new { message = msg });
         }
@@ -74,6 +76,14 @@ namespace CUATRG.Controllers
         public ActionResult Resources()
         {
             ViewBag.Message = "Resources.";
+
+            return View();
+        }
+
+        public ActionResult Error()
+        {
+            ViewBag.Message = "Error";
+            log.Info("Test");
 
             return View();
         }

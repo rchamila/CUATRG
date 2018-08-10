@@ -161,9 +161,9 @@ Go
 
 INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (1, N'Sobel', N'Edge')
 INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (2, N'Prewitt', N'Edge')
-INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (3, N'Canny 1.0', N'Edge')
-INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (4, N'Canny 0.2', N'Edge') 
-INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (5, N'Canny 0.3', N'Edge')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (3, N'Canny1.0', N'Edge')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (4, N'Canny0.2', N'Edge') 
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (5, N'Canny0.3', N'Edge')
 INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (6, N'Grayscale', N'CM')
 INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (7, N'Roberts', N'Edge')
 INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (8, N'Gaussian', N'Noise')

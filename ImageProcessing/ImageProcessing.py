@@ -1,10 +1,9 @@
 import numpy as np
-import glymur 
 import os
 import sys
+import scipy
 
 from scipy import ndimage as ndi
-import scipy
 from skimage.color import rgb2gray
 from skimage import feature
 from skimage.filters import roberts, sobel, scharr, prewitt
@@ -40,8 +39,7 @@ for image in images:
         noise_salt = random_noise(im, "salt") 
         noise_pepper = random_noise(im, "pepper") 
         noise_speckle = random_noise(im, "speckle") 
-        #noise_jp2 = glymur.jp2k(im)
-        
+           
         pathGrayscale = rootDir + "Processed\\CM\\Grayscale\\"
 
         if not os.path.exists(pathGrayscale):
@@ -57,7 +55,7 @@ for image in images:
         if not os.path.exists(pathSobel):
             os.makedirs(pathSobel)
 
-        pathCanny1 = rootDir + "Processed\\Edge\\Canny\\"
+        pathCanny1 = rootDir + "Processed\\Edge\\Canny1.0\\"
 
         if not os.path.exists(pathCanny1):
             os.makedirs(pathCanny1)
@@ -102,10 +100,17 @@ for image in images:
         if not os.path.exists(speckle):
             os.makedirs(speckle)
 
-        jp2k = rootDir + "Processed\\Noise\\jp2k\\"
- 
+        jp2k = rootDir + "Processed\\Noise\\Jp2k\\"
+        
+        if not os.path.exists(jp2k):
+            os.makedirs(jp2k)
 
         imagename = image.split('\\')[-1]
+        
+       # jp2kImageName =jp2k + imagename.replace("Image_", "Image_Jp2k_" ).replace("jpg","jp2")
+        #noise_jp2 = glymur.jp2k.Jp2k(jp2kImageName, im)     
+
+      
 
         scipy.misc.imsave(pathGrayscale + imagename.replace("Image_", "Image_Grayscale_" ) , img_gray)
         scipy.misc.imsave(pathRoberts + imagename.replace("Image_", "Image_Roberts_" ) , edge_roberts)
@@ -123,7 +128,7 @@ for image in images:
         #scipy.misc.imsave(jp2k + image.split('\\')[-1] , noise_jp2)
 
         print("Image processing completed for :" , image.split('\\')[-1])
-    except:
+    except Exception as ex:
         print("Unexpected error occured processing image :" , image.split('\\')[-1] , " Error : ", sys.exc_info()[0])
     
 

@@ -30,8 +30,8 @@ namespace CUATRG.Controllers
                 // Create our view model
                 var viewModel = new AlbumIndexViewModel
                 {
-                    NumberOfAlbums = imageDB.tblAlbums.Count(),
-                    Albums = imageDB.tblAlbums.ToList()
+                    NumberOfAlbums = imageDB.tblAlbums.Where(a => a.tblImages.Count() > 0).Count(),
+                    Albums = imageDB.tblAlbums.Where(a => a.tblImages.Count() > 0).OrderBy( a=> a.ALB_Name).ToList()
                 };
 
                 return this.View(viewModel);
