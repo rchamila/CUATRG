@@ -15,27 +15,78 @@
 
     <h2>Albums</h2>
     <div class="row">
-        @foreach (CUATRG.Models.tblAlbum album in Model.Albums)
-        {
-            var link = System.Configuration.ConfigurationManager.AppSettings["domain"] + "Images/default.png";
-            
-            if (@album.tblImages != null && @album.tblImages.Count() > 0)
-            {
-                link = System.Configuration.ConfigurationManager.AppSettings["domain"] + @album.tblImages.First().IMG_Path + "//" + album.tblImages.First().IMG_Name;
-            }
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img src="@link">
-                    <div class="caption">
-                        <h3 class="padd-left">@album.ALB_Name</h3>
-                        <p>@album.ALB_Description</p>
-                        <p>
-                            <a href="@Url.Action("Details", "Album",new { albumId = Html.Encode(album.ALB_IDPkey) })" class="btn btn-primary" role="button">View</a>
-                            <a href="#" class="btn btn-default" role="button">Button</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        }
+        <div id="resultsheader"></div>
+        <div id="resultsbody"></div>
     </div>
 </div>
+
+
+<script>
+    $(document).ready(function () {
+        Search(1);
+    });
+    
+
+        function Search(pageId) {
+            var url = "/Album/Index?pageIndex=" + pageId;;
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {},
+                success: Success
+            });
+        }
+
+        function Success(data) {
+
+            $('#resultsbody').empty();
+            $('#resultsheader').empty();
+
+            var header = '';
+            var rows = '';
+
+            if (data.Albums.length <= 0) {
+                header = header.concat('<div>')
+                header = header.concat('<span>No images found</span>')
+                header = header.concat('</div> ')
+                $('#resultsheader').append(header)
+                return;
+            }
+
+            for (var i = 0; i <= (data.Albums.length - 1); i++)
+            {
+                rows = rows.concat('<div class="col-sm-6 col-md-4">')
+                rows = rows.concat('<div class="thumbnail">')
+                rows = rows.concat('<img src="' + data.Albums[i].Image +'">')
+                rows = rows.concat('<div class="caption">')
+                rows = rows.concat('<h3 class="padd-left">' + data.Albums[i].Name + '</h3>')
+                //rows = rows.concat('<p>' + data.Albums[i].Description + '</p>')
+                rows = rows.concat('<p>')
+                rows = rows.concat('<a href="' + data.Albums[i].Path +'" class="btn btn-primary" role="button">View</a>&nbsp;&nbsp;')
+                //rows = rows.concat('<a href="#" class="btn btn-default" role="button">Button</a>')
+                rows = rows.concat('</p>')
+                rows = rows.concat('</div>')
+                rows = rows.concat('</div>')
+                rows = rows.concat('</div>')
+            }
+
+            rows = rows.concat('<div>')
+            rows = rows.concat('<ul class="pagination">')
+
+            for (var i = 1; i <= (data.PageCount); i++) {
+                if (i == data.CurrentPage) {
+                    rows = rows.concat('<li class="active"><a href="#" onclick="Search(' + i + ')">' + i + '</a></li>')
+                }
+                else {
+                    rows = rows.concat('<li><a href="#" onclick="Search(' + i + ')">' + i + '</a></li>')
+                }
+            }
+            rows = rows.concat('</ul>')
+            rows = rows.concat('</div>')
+
+            $('#resultsbody').append(rows)
+            $('#resultsheader').append(header)
+        } 
+
+</script>

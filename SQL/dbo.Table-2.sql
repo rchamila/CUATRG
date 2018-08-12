@@ -73,13 +73,13 @@ Go
 
 CREATE TABLE [dbo].[tblImages] (
     [IMG_IDPkey]         INT            IDENTITY (1, 1) NOT NULL,
-    [IMG_Name]           NVARCHAR (200) NOT NULL,
+    [IMG_Name]           NVARCHAR (500) NOT NULL,
     [ALB_IDFkey]         INT            NOT NULL,
     [FTR_IDFkey]         INT            NOT NULL,
     [ENC_IDFkey]         INT            NOT NULL,
-    [IMG_Path]           NVARCHAR (500) NOT NULL,
-    [IMG_SensorDataPath] NVARCHAR (500) NULL,
-    [IMG_MetaDataPath]   NVARCHAR (500) NULL,
+    [IMG_Path]           NVARCHAR (1000) NOT NULL,
+    [IMG_SensorDataPath] NVARCHAR (1000) NULL,
+    [IMG_MetaDataPath]   NVARCHAR (1000) NULL,
     PRIMARY KEY CLUSTERED ([IMG_IDPkey] ASC),
     CONSTRAINT [FK_tblImages_tblAlbums] FOREIGN KEY ([ALB_IDFkey]) REFERENCES [dbo].[tblAlbums] ([ALB_IDPkey]),
     CONSTRAINT [FK_tblImages_tblEnvironmentalConditions] FOREIGN KEY ([ENC_IDFkey]) REFERENCES [dbo].[tblEnvironmentalConditions] ([ENC_IDPkey]),
@@ -90,11 +90,11 @@ Go
 
 CREATE TABLE [dbo].[tblProcessedImages] (
     [PIM_IDPkey] INT            IDENTITY (1, 1) NOT NULL,
-    [PIM_Name]   NVARCHAR (200)  NOT NULL,
+    [PIM_Name]   NVARCHAR (500)  NOT NULL,
     [FLT_IDFkey] INT            NOT NULL,
     [CMD_IDFkey] INT            NOT NULL,
     [IMG_IDFkey] INT            NOT NULL,
-    [PIM_Path]   NVARCHAR (500) NOT NULL,
+    [PIM_Path]   NVARCHAR (1000) NOT NULL,
     PRIMARY KEY CLUSTERED ([PIM_IDPkey] ASC),
     CONSTRAINT [FK_tblProcessedImages_tblImages] FOREIGN KEY ([IMG_IDFkey]) REFERENCES [dbo].[tblImages] ([IMG_IDPkey]),
     CONSTRAINT [FK_tblProcessedImages_tblColorModes] FOREIGN KEY ([CMD_IDFkey]) REFERENCES [dbo].[tblColorModes] ([CMD_IDPkey]),
@@ -143,19 +143,18 @@ INSERT INTO [dbo].[tblColorModes] ([CMD_IDPkey], [CMD_Name]) VALUES (2, N'Gray S
 INSERT INTO [dbo].[tblColorModes] ([CMD_IDPkey], [CMD_Name]) VALUES (3, N'Black and White')
 
 Go
-
+INSERT INTO [dbo].[tblEnvironmentalConditions] ([ENC_IDPkey], [ENC_Description], [ENC_Name]) VALUES (0,'Normal','Normal')
 INSERT INTO [dbo].[tblEnvironmentalConditions] ([ENC_IDPkey], [ENC_Description], [ENC_Name]) VALUES (1, N'Sunny Day', N'Sunny')
 INSERT INTO [dbo].[tblEnvironmentalConditions] ([ENC_IDPkey], [ENC_Description], [ENC_Name]) VALUES (2, N'Morning', N'Morning')
 INSERT INTO [dbo].[tblEnvironmentalConditions] ([ENC_IDPkey], [ENC_Description], [ENC_Name]) VALUES (3, N'Cloudy', N'Cloudy')
 INSERT INTO [dbo].[tblEnvironmentalConditions] ([ENC_IDPkey], [ENC_Description], [ENC_Name]) VALUES (4, N'Noon', N'Noon')
 INSERT INTO [dbo].[tblEnvironmentalConditions] ([ENC_IDPkey], [ENC_Description], [ENC_Name]) VALUES (5, N'Evening', N'Evening')
 INSERT INTO [dbo].[tblEnvironmentalConditions] ([ENC_IDPkey], [ENC_Description], [ENC_Name]) VALUES (6, N'Night', N'Night')
-
+INSERT INTO [dbo].[tblEnvironmentalConditions] ([ENC_IDPkey], [ENC_Description], [ENC_Name]) VALUES (7,'Blurred','Blurred')
+INSERT INTO [dbo].[tblEnvironmentalConditions] ([ENC_IDPkey], [ENC_Description], [ENC_Name]) VALUES (8,'Shadowy','Shadowy')
 GO
 
-INSERT INTO [dbo].[tblFeatures] ([FTR_IDPkey], [FTR_Name]) VALUES (1, N'Normal')
-INSERT INTO [dbo].[tblFeatures] ([FTR_IDPkey], [FTR_Name]) VALUES (2, N'Blurred')
-INSERT INTO [dbo].[tblFeatures] ([FTR_IDPkey], [FTR_Name]) VALUES (3, N'Shadowy')
+INSERT INTO [dbo].[tblFeatures] ([FTR_IDPkey], [FTR_Name]) VALUES (1, N'Normal') 
 
 Go
 
@@ -164,12 +163,15 @@ INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VAL
 INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (3, N'Canny1.0', N'Edge')
 INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (4, N'Canny0.2', N'Edge') 
 INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (5, N'Canny0.3', N'Edge')
-INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (6, N'Grayscale', N'CM')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (6, N'Grayscale', N'Color')
 INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (7, N'Roberts', N'Edge')
 INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (8, N'Gaussian', N'Noise')
 INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (9, N'Salt', N'Noise')
 INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (10, N'Pepper', N'Noise')
 INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (11, N'Speckle', N'Noise')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (12, N'Average', N'Blur')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (13, N'Gaussian', N'Blur')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (14, N'Median', N'Blur')
 
 GO
 

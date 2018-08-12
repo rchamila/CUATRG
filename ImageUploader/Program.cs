@@ -30,7 +30,7 @@ namespace ImageUploader
                 //Task.Run(() => MainAsync(file));
                 MainAsync(file);
             }
-
+            Console.WriteLine("Master images uploaded");
 
             List<string> processedfiles = DirSearch(baseDir + "Processed");
             Console.WriteLine("Processed Image uploading started, No of procesed images trying to upload : {0}", processedfiles.Count);
@@ -40,6 +40,8 @@ namespace ImageUploader
                 //Task.Run(() => MainAsync(file));
                 ProcessedAsync(file);
             }
+            Console.WriteLine("Processed images uploaded");
+
             Console.ReadLine();
         }
 

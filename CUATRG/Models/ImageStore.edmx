@@ -77,13 +77,13 @@ warning 6002: The table/view 'D:\GITPROJECTS\CUATRG\CUATRG\APP_DATA\CUATRG.MDF.d
             <PropertyRef Name="IMG_IDPkey" />
           </Key>
           <Property Name="IMG_IDPkey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IMG_Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IMG_Name" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="ALB_IDFkey" Type="int" Nullable="false" />
           <Property Name="FTR_IDFkey" Type="int" Nullable="false" />
           <Property Name="ENC_IDFkey" Type="int" Nullable="false" />
-          <Property Name="IMG_Path" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="IMG_SensorDataPath" Type="nvarchar" MaxLength="500" />
-          <Property Name="IMG_MetaDataPath" Type="nvarchar" MaxLength="500" />
+          <Property Name="IMG_Path" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="IMG_SensorDataPath" Type="nvarchar" MaxLength="1000" />
+          <Property Name="IMG_MetaDataPath" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="tblMetaData">
           <Key>
@@ -108,11 +108,11 @@ warning 6002: The table/view 'D:\GITPROJECTS\CUATRG\CUATRG\APP_DATA\CUATRG.MDF.d
             <PropertyRef Name="PIM_IDPkey" />
           </Key>
           <Property Name="PIM_IDPkey" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PIM_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PIM_Name" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="FLT_IDFkey" Type="int" Nullable="false" />
           <Property Name="CMD_IDFkey" Type="int" Nullable="false" />
           <Property Name="IMG_IDFkey" Type="int" Nullable="false" />
-          <Property Name="PIM_Path" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="PIM_Path" Type="nvarchar" MaxLength="1000" Nullable="false" />
         </EntityType>
         <EntityType Name="tblSensorData">
           <Key>
@@ -422,11 +422,11 @@ FROM [dbo].[Log] AS [Log]</DefiningQuery>
             <PropertyRef Name="PIM_IDPkey" />
           </Key>
           <Property Name="PIM_IDPkey" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="PIM_Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PIM_Name" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
           <Property Name="FLT_IDFkey" Type="Int32" Nullable="false" />
           <Property Name="CMD_IDFkey" Type="Int32" Nullable="false" />
           <Property Name="IMG_IDFkey" Type="Int32" Nullable="false" />
-          <Property Name="PIM_Path" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="PIM_Path" Type="String" Nullable="false" MaxLength="1000" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="tblColorMode" Relationship="CUATRGEntities2.FK_tblProcessedImages_tblColorModes" FromRole="tblProcessedImages" ToRole="tblColorModes" />
           <NavigationProperty Name="tblFilter" Relationship="CUATRGEntities2.FK_tblProcessedImages_tblFilters" FromRole="tblProcessedImages" ToRole="tblFilters" />
           <NavigationProperty Name="tblImage" Relationship="CUATRGEntities2.FK_tblProcessedImages_tblImages" FromRole="tblProcessedImage" ToRole="tblImage" />
@@ -491,13 +491,13 @@ FROM [dbo].[Log] AS [Log]</DefiningQuery>
             <PropertyRef Name="IMG_IDPkey" />
           </Key>
           <Property Type="Int32" Name="IMG_IDPkey" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="IMG_Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IMG_Name" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="ALB_IDFkey" Nullable="false" />
           <Property Type="Int32" Name="FTR_IDFkey" Nullable="false" />
           <Property Type="Int32" Name="ENC_IDFkey" Nullable="false" />
-          <Property Type="String" Name="IMG_Path" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="IMG_SensorDataPath" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="IMG_MetaDataPath" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IMG_Path" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IMG_SensorDataPath" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IMG_MetaDataPath" MaxLength="1000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tblAlbum" Relationship="CUATRGEntities2.FK_tblImages_tblAlbums" FromRole="tblImage" ToRole="tblAlbum" />
           <NavigationProperty Name="tblEnvironmentalCondition" Relationship="CUATRGEntities2.FK_tblImages_tblEnvironmentalConditions" FromRole="tblImage" ToRole="tblEnvironmentalCondition" />
           <NavigationProperty Name="tblFeature" Relationship="CUATRGEntities2.FK_tblImages_tblFeatures" FromRole="tblImage" ToRole="tblFeature" />

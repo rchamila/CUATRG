@@ -5,6 +5,7 @@ using LevDan.Exif;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -27,6 +28,7 @@ namespace CUATRG.Api
             var image = new tblImage();
             try
             {
+               
                 var dbCtx = new CUATRGEntities4();
                 tblAlbum album = dbCtx.tblAlbums.FirstOrDefault(a => a.ALB_Name == ddlAlbums);
                 if (album == null)
@@ -60,6 +62,9 @@ namespace CUATRG.Api
 
                 var files = HttpContext.Current.Request.Files.Count > 0 ?
                                             HttpContext.Current.Request.Files : null;
+
+                log.InfoFormat("Files {0} , Album {1}, Condition {2}, Feature {3} ",
+                                string.Join(",", files.AllKeys), ddlAlbums, ddlConditions, ddlFeatures);
 
                 if (files != null)
                 {
@@ -117,6 +122,13 @@ namespace CUATRG.Api
 
                 return "OK";
             }
+            catch (DbEntityValidationException ex)
+            {
+                var valErrors = ex.EntityValidationErrors.SelectMany(e => e.ValidationErrors);
+                var error = string.Join(",", valErrors.Select(e => e.ErrorMessage));
+                log.Error(string.Format("Error uploading image {0} - {1}", image.IMG_Name, error), ex);
+                return "ERROR:" + ex.Message.ToString();
+            }
             catch (Exception ex)
             {
                 log.Error(string.Format("Error saving image {0}", image.IMG_Name), ex);
@@ -130,7 +142,8 @@ namespace CUATRG.Api
             var processedImage = new tblProcessedImage();
             try
             {
-                var masterImageName = "image_" + name.Split('_')[2];
+                var para = name.Split('_');
+                var masterImageName = "image_" + para[para.Length - 1];
                 var dbCtx = new CUATRGEntities4();
 
                 var masterImage = dbCtx.tblImages.FirstOrDefault(i => i.IMG_Name == masterImageName);
@@ -144,6 +157,10 @@ namespace CUATRG.Api
                 var files = HttpContext.Current.Request.Files.Count > 0 ?
                                             HttpContext.Current.Request.Files : null;
 
+                log.InfoFormat("Files {0} , Name {1}, Filter Type {2}, Filter Name {3} ",
+                                string.Join(",", files.AllKeys), name, filterType, filterName);
+
+
                 if (files != null)
                 {
                     foreach (var file in files.AllKeys)
@@ -151,6 +168,8 @@ namespace CUATRG.Api
                         var path = string.Format("~/{0}", masterImage.IMG_Path);
                         var relativePath = masterImage.IMG_Path;
                         var fileName = files[file].FileName;
+
+                        log.InfoFormat("File name : {0}", fileName);
 
                         if (fileName.Contains("Image") || fileName.Contains("IMG"))
                         {
@@ -188,9 +207,16 @@ namespace CUATRG.Api
 
                 return "OK";
             }
+            catch(DbEntityValidationException ex)
+            {
+                var valErrors = ex.EntityValidationErrors.SelectMany(e => e.ValidationErrors);
+                var error = string.Join(",",valErrors.Select(e => e.ErrorMessage));
+                log.Error(string.Format("Error uploading image {0} - {1}", processedImage.PIM_Name, error), ex);
+                return "ERROR:" + ex.Message.ToString();
+            }
             catch (Exception ex)
             {
-                log.Error(string.Format("Error uploading image {0}", processedImage.PIM_Name));
+                log.Error(string.Format("Error uploading image {0}", processedImage.PIM_Name),ex);
                 return "ERROR:" + ex.Message.ToString();
             }
         }

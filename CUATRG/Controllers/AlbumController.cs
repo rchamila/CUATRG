@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CUATRG.ViewModels;
+using System.Configuration;
 
 //Here is the once-per-application setup information
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
@@ -18,10 +19,45 @@ namespace CUATRG.Controllers
         //Here is the once-per-class call to initialize the log object
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        
-
-        public ActionResult Index()
+        [HttpPost]
+        public ActionResult Index(int pageIndex)
         {
+            int recordsPerPage = 1;
+            IQueryable<tblAlbum> results = imageDB.tblAlbums.OrderBy(i => i.ALB_Name).Where( i => i.tblImages.Count() > 0);
+
+            int recordCount = results.Count();
+
+            //Pagination
+           
+            if (pageIndex > 0)
+            {
+                results = results.Skip((pageIndex - 1) * recordsPerPage).Take(recordsPerPage);
+            }
+            else
+            {
+                pageIndex = 1;
+                results = results.Take(recordsPerPage);
+            }
+
+            List<tblAlbum> albums = results.ToList();
+
+
+            var data = new
+            {
+                Albums = albums.Select(i => new {
+                    Name = i.ALB_Name,
+                    Image = System.Configuration.ConfigurationManager.AppSettings["domain"] + i.tblImages.First().IMG_Path + "//" + i.tblImages.First().IMG_Name,
+                    Path =  System.Configuration.ConfigurationManager.AppSettings["domain"] + "/Album/Details?albumId=" + i.ALB_IDPkey,
+                    AlbumId = i.ALB_IDPkey,
+                    Description = i.ALB_Description
+                }).ToList(),
+                PageCount = (recordCount + recordsPerPage - 1) / recordsPerPage,
+                CurrentPage = pageIndex
+            };
+            return Json(data);
+        }
+        public ActionResult Index()
+        { 
             log.Info("Retriving albums");
             try
             {
