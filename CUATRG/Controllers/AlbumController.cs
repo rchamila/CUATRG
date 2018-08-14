@@ -22,7 +22,7 @@ namespace CUATRG.Controllers
         [HttpPost]
         public ActionResult Index(int pageIndex)
         {
-            int recordsPerPage = 1;
+            int recordsPerPage = 6;
             IQueryable<tblAlbum> results = imageDB.tblAlbums.OrderBy(i => i.ALB_Name).Where( i => i.tblImages.Count() > 0);
 
             int recordCount = results.Count();

@@ -5,17 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container">
+<div class="container well">
 
     <ol class="breadcrumb">
-          <li>@Html.ActionLink("Home", "Index", "Home")</li>
-          <li class="active"><a href="#">Albums</a></li>
-        
-        </ol>
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="active"><a href="#">Albums</a></li>
 
-    <h2>Albums</h2>
-    <div class="row">
+    </ol>
+    <div >
+        <div class="container">
+            <h2>Albums</h2>
+        </div>
+
         <div id="resultsheader"></div>
+        <br>
         <div id="resultsbody"></div>
     </div>
 </div>
@@ -53,12 +56,14 @@
                 $('#resultsheader').append(header)
                 return;
             }
-
+            rows = rows.concat('<div class="col-md-12" style="padding-left:0px">')
             for (var i = 0; i <= (data.Albums.length - 1); i++)
             {
                 rows = rows.concat('<div class="col-sm-6 col-md-4">')
-                rows = rows.concat('<div class="thumbnail">')
-                rows = rows.concat('<img src="' + data.Albums[i].Image +'">')
+                rows = rows.concat('<div class="thumbnail">') 
+                rows = rows.concat('<a href="' + data.Albums[i].Path + '" >')
+                rows = rows.concat('<img src="' + data.Albums[i].Image + '" >')
+                rows = rows.concat('</a>')
                 rows = rows.concat('<div class="caption">')
                 rows = rows.concat('<h3 class="padd-left">' + data.Albums[i].Name + '</h3>')
                 //rows = rows.concat('<p>' + data.Albums[i].Description + '</p>')
@@ -70,8 +75,10 @@
                 rows = rows.concat('</div>')
                 rows = rows.concat('</div>')
             }
+            rows = rows.concat('</div>')
 
-            rows = rows.concat('<div>')
+            rows = rows.concat('<div class="col-md-12 ">')
+
             rows = rows.concat('<ul class="pagination">')
 
             for (var i = 1; i <= (data.PageCount); i++) {
@@ -84,6 +91,7 @@
             }
             rows = rows.concat('</ul>')
             rows = rows.concat('</div>')
+            
 
             $('#resultsbody').append(rows)
             $('#resultsheader').append(header)

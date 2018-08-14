@@ -8,8 +8,8 @@
 
 <div class="container">
     <ol class="breadcrumb">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="#">Albums</a></li>
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("Albums", "Index", "Album")</li>
         <li class="active">@Model.Image.tblAlbum.ALB_Name</li>
     </ol>
 </div>
