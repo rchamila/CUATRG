@@ -87,32 +87,24 @@ namespace CUATRG.Controllers
             string message = HttpUtility.HtmlEncode("Store.Browse, Album = " + albumId);
             
             tblAlbum selectedAlbum = null;
-            tblImage selectedImage = null;
+            tblImage selectedMasterImage = null;
             tblProcessedImage selectedProcessedImage = null;
 
             selectedAlbum = imageDB.tblAlbums.SingleOrDefault(a => a.ALB_IDPkey == albumId);
             var query = imageDB.tblImages.Where(i => i.ALB_IDFkey == albumId); 
-            //if (conditionId != null)
-            //{
-            //    query = query.Where(i => i.ENC_IDFkey == conditionId);
-            //}
-
-            //if (featureId != null)
-            //{
-            //    query = query.Where(i => i.FTR_IDFkey == featureId);
-            //}
+          
 
             List<tblImage> images = query.ToList();
             if (imageId != null)
             {
-                selectedImage = images.SingleOrDefault( i => i.IMG_IDPkey == imageId);
+                selectedMasterImage = images.SingleOrDefault( i => i.IMG_IDPkey == imageId);
             }
             else
             {
-                selectedImage = images.FirstOrDefault();
+                selectedMasterImage = images.FirstOrDefault();
             }
 
-            int selectedIndex = images.IndexOf(selectedImage);
+            int selectedIndex = images.IndexOf(selectedMasterImage);
             int nextIndex = images.Count() - 1;
             int previousIndex = 0;
             if(images.Count() - 1 > selectedIndex)
@@ -127,20 +119,22 @@ namespace CUATRG.Controllers
 
             if(processedImageId != null)
             {
-                selectedProcessedImage = selectedImage.tblProcessedImages.SingleOrDefault(p => p.PIM_IDPkey == processedImageId.Value);
+                selectedProcessedImage = selectedMasterImage.tblProcessedImages.SingleOrDefault(p => p.PIM_IDPkey == processedImageId.Value);
+            }
+            else
+            {
+                selectedProcessedImage = selectedMasterImage.tblProcessedImages.SingleOrDefault(p => p.tblFilter.FLT_Name == "JPEG");
             }
 
             var viewModel = new ImageDetailsViewModel
             {
-                Image = selectedImage,
+                Image = selectedMasterImage,
                 NextImage = images.ElementAt(nextIndex),
                 PreviousImage = images.ElementAt(previousIndex),
                 ProcessedImage = selectedProcessedImage,
                 AvailableConditions = selectedAlbum.tblImages.Select(i => i.tblEnvironmentalCondition).Distinct().ToList(),
                 AvailableFeatures = selectedAlbum.tblImages.Select( i => i.tblFeature).Distinct().ToList()
-            };
-
-
+            }; 
             return this.View(viewModel);
         }
 

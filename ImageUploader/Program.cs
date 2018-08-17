@@ -13,8 +13,8 @@ namespace ImageUploader
     class Program
     {
 
-        private static string baseDir = @"D:\Temp\Upload\";
-        private static string api = @"http://www.cuatrg.net/api";//@"http://localhost:55892/api";//
+        private static string baseDir = @"D:\Temp\UploadTemp\";
+        private static string api = @"http://localhost:55892/api";//@"http://www.cuatrg.net/api";//
         private static log4net.ILog log = log4net.LogManager.GetLogger
               (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         static void Main(string[] args)
@@ -88,10 +88,10 @@ namespace ImageUploader
                     FileInfo imgInfo = new FileInfo(filePath);
 
                     imageName = imgInfo.Name;
-
-                    //Console.WriteLine("{0} - Image uploading started", imageName);
-
+                    string[] nameParams = imageName.Split('.');
+                    string baseName = string.Join(".", nameParams.Take(nameParams.Count() - 1).ToArray()); 
                     string[] param = filePath.Replace(baseDir + "\\", "").Split('\\');
+                    string basePath = string.Join("\\", param.Take(param.Count() - 1).ToArray());
                     var masterimage = new ByteArrayContent(System.IO.File.ReadAllBytes(filePath));
 
                     masterimage.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
@@ -99,9 +99,8 @@ namespace ImageUploader
                         FileName = imgInfo.Name
                     };
 
-                    content.Add(masterimage, "masterimage");
-
-                    string sensorDataFilePath = filePath.Replace("Image", "SensorData").Replace("jpg","csv").Replace("JPG", "csv");
+                    content.Add(masterimage, "masterimage"); 
+                    string sensorDataFilePath = basePath + "\\" + baseName.Replace("Image", "SensorData") + ".csv";
                     FileInfo sensordataInfo = new FileInfo(sensorDataFilePath);
                     var sensordata = new ByteArrayContent(System.IO.File.ReadAllBytes(sensorDataFilePath));
 
@@ -113,9 +112,10 @@ namespace ImageUploader
 
                     var metaData = new ByteArrayContent(ImageHelper.GetMetaDataByteStream(filePath));
 
+                    
                     metaData.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
                     {
-                        FileName = imageName.Replace("Image", "MetaData").Replace("jpg", "json").Replace("JPG", "json")
+                        FileName = baseName.Replace("Image", "MetaData") + ".json"
                     };
                     content.Add(metaData, "metadata");
 

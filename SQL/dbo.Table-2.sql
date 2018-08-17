@@ -172,6 +172,7 @@ INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VAL
 INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (12, N'Average', N'Blur')
 INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (13, N'Gaussian', N'Blur')
 INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (14, N'Median', N'Blur')
+INSERT INTO [dbo].[tblFilters] ([FLT_IDPkey], [FLT_Name], [FLT_Description]) VALUES (15, N'JPEG2000', N'Noise')
 
 GO
 

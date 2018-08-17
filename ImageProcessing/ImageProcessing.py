@@ -3,6 +3,7 @@ import os
 import sys
 import scipy
 import cv2
+import glymur
 
 from scipy import ndimage as ndi
 from skimage.color import rgb2gray
@@ -19,7 +20,7 @@ from skimage.util import random_noise
 #bytedata = (data - cmin) * scale + low (Removed )
 #bytedata = numpy.subtract(data, cmin, dtype=numpy.float32) * scale + low
 
-rootDir = "D:\\Temp\\Upload\\"
+rootDir = "D:\\Temp\\UploadTemp\\"
 images = []
 
 for root, dirs, files in os.walk(rootDir + "Albums"):  
@@ -53,6 +54,8 @@ for image in images:
     blur_avg = cv2.blur(im,(5,5))
     blur_gaussian =  cv2.GaussianBlur(im,(5,5),0)
     blur_median = cv2.medianBlur(im,5)
+
+
            
     pathGrayscale = rootDir + "Processed\\Color\\Grayscale\\"
 
@@ -114,10 +117,15 @@ for image in images:
     if not os.path.exists(speckle):
         os.makedirs(speckle)
 
-    jp2k = rootDir + "Processed\\Noise\\Jp2k\\"
+    jp2k = rootDir + "Processed\\Noise\\JPEG2000\\"
         
-    #if not os.path.exists(jp2k):
-    #    os.makedirs(jp2k)
+    if not os.path.exists(jp2k):
+        os.makedirs(jp2k)
+
+    jpeg = rootDir + "Processed\\Noise\\JPEG\\"
+        
+    if not os.path.exists(jpeg):
+        os.makedirs(jpeg)
 
     blur = rootDir + "Processed\\Blur\\Average\\"
 
@@ -137,13 +145,11 @@ for image in images:
 
     imagename = image.split('\\')[-1]
         
-    # jp2kImageName =jp2k + imagename.replace("Image_", "Image_Jp2k_" ).replace("jpg","jp2")
-    #noise_jp2 = glymur.jp2k.Jp2k(jp2kImageName, im)     
-
-      
+    jp2kImageName =jp2k + imagename.replace("Image_", "Image_Noise_Jpeg2000_" ).replace("jpg","jp2k")
+    noise_jp2 = glymur.jp2k.Jp2k(jp2kImageName, im)     
 
     scipy.misc.imsave(pathGrayscale + imagename.replace("Image_", "Image_Color_Grayscale_" ) , img_gray)
-
+    scipy.misc.imsave(pathGrayscale + imagename.replace("Image_", "Image_Color_Grayscale_" ) , img_gray)
     scipy.misc.imsave(pathRoberts + imagename.replace("Image_", "Image_Edge_Roberts_" ) , edge_roberts)
     scipy.misc.imsave(pathSobel + imagename.replace("Image_", "Image_Edge_Sobel_" ) , edge_sobel)
     scipy.misc.imsave(pathCanny1 + imagename.replace("Image_", "Image_Edge_Canny_" ) , edge_canny1)
@@ -154,9 +160,8 @@ for image in images:
 
     scipy.misc.imsave(gaussian + imagename.replace("Image_", "Image_Noise_Gaussian_" ) , noise_gaussian)
     scipy.misc.imsave(salt + imagename.replace("Image_", "Image_Noise_Salt_" ) , noise_salt)
-    scipy.misc.imsave(pepper + imagename.replace("Image_", "Image_Noise_Pepper_" ) , noise_pepper)
-    scipy.misc.imsave(speckle + imagename.replace("Image_", "Image_Noise_Speckle_" ) , noise_speckle)
-    #scipy.misc.imsave(jp2k + image.split('\\')[-1] , noise_jp2)
+    scipy.misc.imsave(pepper + imagename.repl-("Image_", "Image_Noise_Speckle_" ) , noise_speckle)
+    #scipy.misc.imsave(jpeg + imagename.replace("Image_", "Image_Noise_JPEG_" ) , im)  
 
     scipy.misc.imsave(blur + imagename.replace("Image_", "Image_Blur_Average_" ) , blur_avg)
     scipy.misc.imsave(gaussianblur + imagename.replace("Image_", "Image_Blur_Gaussian_" ) , blur_gaussian)
